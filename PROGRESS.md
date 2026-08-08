@@ -24,7 +24,7 @@ _(none yet)_
 |---|---|---|
 | config.py | ✅ Done | REFERENCE_NOW, thresholds, excluded statuses — all correct |
 | main.py | 🟡 Skeleton | FastAPI app + CORS only. No ingestion, no routes mounted |
-| app/db.py | ❌ Missing | SQLite init + CSV ingestion not implemented |
+| app/db.py | Done | SQLite init + CSV ingestion implemented |
 | app/api/routes.py | ❌ Missing | All 6 endpoints not implemented |
 | app/core/stuck_detector.py | ❌ Missing | Rotting detection not implemented |
 | app/core/loop_detector.py | ❌ Missing | Loop detection not implemented |
