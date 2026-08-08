@@ -12,17 +12,35 @@ const customStyles = `
     85% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
     100% { left: 100%; transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
   }
+  @keyframes transfer-x-rtl {
+    0% { left: 100%; transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+    15% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    85% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    100% { left: 0%; transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+  }
   @keyframes transfer-y {
     0% { top: 0%; transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
     15% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
     85% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
     100% { top: 100%; transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
   }
+  @keyframes transfer-y-rtl {
+    0% { top: 100%; transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+    15% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    85% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    100% { top: 0%; transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+  }
   .animate-transfer-desktop {
     animation: transfer-x 2.5s infinite ease-in-out;
   }
+  .animate-transfer-desktop-rtl {
+    animation: transfer-x-rtl 2.5s infinite ease-in-out;
+  }
   .animate-transfer-mobile {
     animation: transfer-y 2.5s infinite ease-in-out;
+  }
+  .animate-transfer-mobile-rtl {
+    animation: transfer-y-rtl 2.5s infinite ease-in-out;
   }
 `;
 
@@ -60,6 +78,27 @@ export default function FileJourneyPage() {
 
   const nextStep = () => setStepIndex(s => Math.min(events.length - 1, s + 1));
   const prevStep = () => setStepIndex(s => Math.max(0, s - 1));
+
+  let leftUser = null;
+  let rightUser = null;
+  let transferDirection = 'ltr';
+
+  if (currentEvent && currentEvent.is_transfer) {
+    const firstInteraction = events.find(e => 
+      e.is_transfer && 
+      ((e.from_user_id === currentEvent.from_user_id && e.to_user_id === currentEvent.to_user_id) ||
+       (e.from_user_id === currentEvent.to_user_id && e.to_user_id === currentEvent.from_user_id))
+    );
+    
+    leftUser = { name: currentEvent.from_user_name, role: 'Sender' };
+    rightUser = { name: currentEvent.to_user_name, role: 'Receiver' };
+
+    if (firstInteraction && firstInteraction.from_user_id === currentEvent.to_user_id) {
+      leftUser = { name: currentEvent.to_user_name, role: 'Receiver' };
+      rightUser = { name: currentEvent.from_user_name, role: 'Sender' };
+      transferDirection = 'rtl';
+    }
+  }
 
   if (!currentEvent) {
     return (
@@ -131,7 +170,7 @@ export default function FileJourneyPage() {
             {/* Transaction Visual */}
             <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12 w-full mt-4">
 
-              {/* Sender */}
+              {/* Sender / Left User */}
               <div className="flex flex-col items-center gap-4 shrink-0">
                 <div className="w-24 h-24 lg:w-32 lg:h-32 rounded-full bg-slate-800 border-2 border-slate-600 flex items-center justify-center shadow-lg relative">
                   <User className="w-10 h-10 lg:w-12 lg:h-12 text-slate-400" />
@@ -142,8 +181,12 @@ export default function FileJourneyPage() {
                   )}
                 </div>
                 <div className="text-center">
-                  <div className="text-white font-bold text-lg lg:text-xl">{currentEvent.from_user_name}</div>
-                  <div className="text-slate-300 text-base font-semibold">{currentEvent.is_transfer ? 'Sender' : 'Actor'}</div>
+                  <div className="text-white font-bold text-lg lg:text-xl">
+                    {currentEvent.is_transfer ? leftUser.name : currentEvent.from_user_name}
+                  </div>
+                  <div className="text-slate-300 text-base font-semibold">
+                    {currentEvent.is_transfer ? leftUser.role : 'Actor'}
+                  </div>
                 </div>
               </div>
 
@@ -155,11 +198,13 @@ export default function FileJourneyPage() {
                   </div>
 
                   {/* Traveling Document Emoji */}
-                  <div className="hidden lg:flex absolute top-1/2 left-0 animate-transfer-desktop text-2xl z-0 pointer-events-none">
+                  <div className={cn("hidden lg:flex absolute top-1/2 left-0 text-2xl z-0 pointer-events-none items-center gap-1", transferDirection === 'rtl' ? 'animate-transfer-desktop-rtl flex-row-reverse' : 'animate-transfer-desktop')}>
                     📄
+                    <div className="text-sky-400">{transferDirection === 'rtl' ? '←' : '→'}</div>
                   </div>
-                  <div className="lg:hidden absolute top-0 left-1/2 animate-transfer-mobile text-2xl z-0 pointer-events-none">
+                  <div className={cn("lg:hidden absolute top-0 left-1/2 text-2xl z-0 pointer-events-none flex flex-col items-center gap-1", transferDirection === 'rtl' ? 'animate-transfer-mobile-rtl flex-col-reverse' : 'animate-transfer-mobile')}>
                     📄
+                    <div className="text-sky-400 -rotate-90">{transferDirection === 'rtl' ? '←' : '→'}</div>
                   </div>
 
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-900 border-2 border-sky-500 text-sky-400 px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest shadow-[0_0_20px_rgba(14,165,233,0.4)] whitespace-nowrap z-10">
@@ -168,15 +213,15 @@ export default function FileJourneyPage() {
                 </div>
               )}
 
-              {/* Receiver (Only if transfer) */}
+              {/* Receiver / Right User (Only if transfer) */}
               {currentEvent.is_transfer && (
                 <div className="flex flex-col items-center gap-4 shrink-0">
                   <div className="w-24 h-24 lg:w-32 lg:h-32 rounded-full bg-slate-800 border-2 border-sky-500 flex items-center justify-center shadow-[0_0_30px_rgba(14,165,233,0.2)]">
                     <User className="w-10 h-10 lg:w-12 lg:h-12 text-sky-400" />
                   </div>
                   <div className="text-center">
-                    <div className="text-white font-bold text-lg lg:text-xl">{currentEvent.to_user_name}</div>
-                    <div className="text-sky-300 text-base font-semibold">Receiver</div>
+                    <div className="text-white font-bold text-lg lg:text-xl">{rightUser.name}</div>
+                    <div className="text-sky-300 text-base font-semibold">{rightUser.role}</div>
                   </div>
                 </div>
               )}
