@@ -4,12 +4,13 @@
 
 ## Completed
 
+- [x] 2026-08-08 app/core/loop_detector.py — user- and department-level reciprocal loop detection added, with active-file filtering and 30-day exchange-span windows — verified by syntax parsing
 - [x] 2026-08-08 Data models and SQLite ingestion — verified by startup ingestion smoke tests
 - [x] 2026-08-08 app/core/stuck_detector.py — rotting detector added with `.date()` inactivity math, closed-file skip, zero-event fallback, overdue escalation — verified by `python -m unittest discover -s src/backend/tests`
 
 ## In Progress / Blocked
 
-- [ ] app/core/loop_detector.py — loop detection not implemented
+- [ ] Loop detector CSV smoke check | local Python environment is missing Pydantic; no dependency installation or test files requested
 - [ ] app/core/risk_scorer.py — risk scoring not implemented
 - [ ] main.py — startup detection + AI pre-generation not wired
 - [ ] app/api/routes.py — all 6 endpoints missing
@@ -27,6 +28,7 @@
 | 2026-08-08 | AI folder named AI (uppercase) on disk | Matches current imports in ollama_service.py; do not rename | Codex, based on repository state |
 | 2026-08-08 | Ollama constants (URL, model, timeout) sourced from config.py via os.getenv | Single source of truth; .env overrides without code changes | Codex, based on repository state |
 | 2026-08-08 | Rotting severity follows locked threshold ladder exactly: 15 WARNING, 30 HIGH, 45 CRITICAL, 90 CAMPAIGN | Resolves stale expected-alert notes in favor of SPECS.md and detection_algorithms.md | SPECS.md |
+| 2026-08-08 | Loop window is evaluated as a rolling 30-day span of exchanges, rather than only the final 30 days before REFERENCE_NOW | Satisfies the core rule and documented F6624 scenario (six exchanges over 18 days), which conflicts with the illustrative trailing-window snippet | Codex, based on SPECS.md and detection_algorithms.md |
 
 ## Codebase State
 
@@ -41,7 +43,7 @@
 | app/AI/prompt.py | Done — SYSTEM_PROMPT, USER_PROMPT_TEMPLATE, OllamaResponse, get_fallback_insight |
 | app/AI/ollama_service.py | Done — generate_insight(), async httpx, Pydantic validation, single except Exception fallback |
 | app/core/stuck_detector.py | Done — calendar-day rotting detector with overdue modifier |
-| app/core/loop_detector.py | Missing |
+| app/core/loop_detector.py | Done — user- and department-level reciprocal loop detection |
 | app/core/risk_scorer.py | Missing |
 | app/api/routes.py | Missing |
 | tests/test_stuck_detector.py | Done — rotting threshold, closed-file, zero-event, overdue escalation coverage |
@@ -77,8 +79,7 @@
 
 ## Next Up
 
-1. app/core/loop_detector.py — user-level then dept-level, 30-day window, min 3 RT
-2. app/core/risk_scorer.py — deterministic 0-100 formula + compound +15 bonus
+1. app/core/risk_scorer.py — deterministic 0-100 formula + compound +15 bonus
 3. Wire detectors into main.py startup — store alerts, pre-generate top-10 AI insights
 4. app/api/routes.py — 6 endpoints (summary, alerts, journey, workload, org/tree, regenerate)
 5. Mount routes in main.py
