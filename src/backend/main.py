@@ -1,7 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.db import get_connection, ingest_csv_data, init_db
+from app.api.routes import router
+from app.core.orchestrator import run_full_pipeline
+from app.db import get_connection
 
 app = FastAPI(title="FilePulse API")
 
@@ -13,12 +15,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(router)
+
 
 @app.on_event("startup")
-def startup():
+async def startup():
     with get_connection() as conn:
-        init_db(conn)
-        ingest_csv_data(conn)
+        await run_full_pipeline(conn, top_k_ai_insights=10)
 
 
 @app.get("/api/health")

@@ -37,29 +37,34 @@ def consolidate_alerts(
         holder = employees_by_id.get(file_record.current_holder_id)
         holder_name = holder.name if holder else file_record.current_holder_id
         
-        # Calculate consolidated properties
-        alert_types = list({a.alert_type for a in file_alerts})
-        
+        # Calculate consolidated properties - sort alert_types deterministically
+        alert_types = sorted(list({a.alert_type for a in file_alerts}))
+
         # Sort alerts by risk score to find the primary alert (for AI insight and max score)
         primary_alert = max(file_alerts, key=lambda a: a.risk_score)
-        
+
         max_severity = max(file_alerts, key=lambda a: SEVERITY_RANK.get(a.severity, 0)).severity
-        
+
         # Get max values for optional fields
         days_inactive = max((a.days_inactive for a in file_alerts if a.days_inactive is not None), default=None)
         loop_round_trips = max((a.loop_round_trips for a in file_alerts if a.loop_round_trips is not None), default=None)
-        
-        skipped_stages_list = [a.skipped_stages for a in file_alerts if a.skipped_stages]
+
+        skipped_stages_list = list(dict.fromkeys(a.skipped_stages for a in file_alerts if a.skipped_stages))
         skipped_stages = ", ".join(skipped_stages_list) if skipped_stages_list else None
-        
+
         # For days to deadline, find a valid int. They should be identical if present.
         valid_days = [a.days_to_deadline for a in file_alerts if a.days_to_deadline is not None]
         days_to_deadline = min(valid_days) if valid_days else None
-        
+
         is_overdue = any(a.is_overdue for a in file_alerts)
-        
-        # Check for AI insight
+
+        # Check for AI insight: check primary_alert first, then fallback to any alert of this file
         ai_insight = insights_by_alert_id.get(primary_alert.alert_id)
+        if not ai_insight:
+            for a in file_alerts:
+                if a.alert_id in insights_by_alert_id:
+                    ai_insight = insights_by_alert_id[a.alert_id]
+                    break
         
         consolidated.append(
             ConsolidatedAlert(
