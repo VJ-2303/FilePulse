@@ -7,6 +7,14 @@ from config import EXCLUDED_STATUSES, REFERENCE_NOW, ROT_THRESHOLDS_DAYS
 
 SEVERITY_ORDER: list[Severity] = ["WARNING", "HIGH", "CRITICAL", "CAMPAIGN"]
 
+# Ratio thresholds for the expected work span (deadline_at - created_at).
+ROT_RATIO_THRESHOLDS = {
+    "WARNING": 0.5,
+    "HIGH": 1.0,
+    "CRITICAL": 1.5,
+    "CAMPAIGN": 2.0,
+}
+
 
 def detect_rotting(
     files: list[FileRecord],
@@ -23,7 +31,8 @@ def detect_rotting(
 
         last_activity_at = latest_events.get(file_record.file_id, file_record.created_at)
         days_inactive = (reference_time.date() - last_activity_at.date()).days
-        severity = rotting_severity(days_inactive)
+        expected_span_days = (file_record.deadline_at.date() - file_record.created_at.date()).days
+        severity = rotting_severity(days_inactive, expected_span_days)
 
         if severity is None:
             continue
@@ -64,9 +73,22 @@ def detect_rotting_from_db(
     return detect_rotting(files, events, now)
 
 
-def rotting_severity(days_inactive: int) -> Severity | None:
+def rotting_severity(days_inactive: int, expected_span_days: int) -> Severity | None:
+    # Official guideline: any active file inactive > 90 days must be reviewed.
+    if days_inactive >= ROT_THRESHOLDS_DAYS["CAMPAIGN"]:
+        return "CAMPAIGN"
+
+    # No valid expected span (zero/negative deadline window) — fall back to absolute days.
+    if expected_span_days <= 0:
+        for severity in reversed(SEVERITY_ORDER):
+            if days_inactive >= ROT_THRESHOLDS_DAYS[severity]:
+                return severity
+        return None
+
+    # Ratio-based: how far past the expected work span has the file gone?
+    rot_ratio = days_inactive / expected_span_days
     for severity in reversed(SEVERITY_ORDER):
-        if days_inactive >= ROT_THRESHOLDS_DAYS[severity]:
+        if rot_ratio >= ROT_RATIO_THRESHOLDS[severity]:
             return severity
     return None
 
