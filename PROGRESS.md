@@ -28,17 +28,18 @@
 | app/core/risk_scorer.py | Done — 3/3 tests passing |
 | app/core/alert_consolidator.py | Done — 6/6 tests passing |
 | app/core/orchestrator.py | Done — full pipeline with insight cache (no repeat Ollama calls on restart) |
-| app/api/routes.py | Done — dashboard summary, alerts, file journey, employee workload, org tree, AI insight regeneration |
+| app/api/routes.py | Done — all 7 endpoints fully implemented against specs |
 | tests/test_stuck_detector.py | Done — 4 tests |
 | tests/test_loop_detector.py | Done — 3 tests |
 | tests/test_conformance_detector.py | Done — 3 tests |
 | tests/test_risk_scorer.py | Done — 3 tests |
 | tests/test_alert_consolidator.py | Done — 6 tests |
-| tests/test_dashboard_summary.py | Done — consolidated KPI and active/overdue counts |
-| tests/test_api_routes.py | Done — alerts, journey, workload, org tree, invalid filter coverage |
-| tests/test_validation.py | Missing — end-to-end pipeline test |
+| tests/test_dashboard_summary.py | Done — 1 test |
+| tests/test_api_endpoints.py | Done — 11 endpoint validation tests |
+| tests/test_api_routes.py | Done — 5 internal builder tests |
+| tests/test_validation.py | Done — end-to-end pipeline test |
 
-**Tests: 25/25 passing**
+**Tests: 36/36 passing**
 
 ### Data (src/backend/data/)
 
