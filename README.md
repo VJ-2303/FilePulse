@@ -1,29 +1,50 @@
-# <!-- Team name --> · Tech for Good 2026
+# Future PMs — FilePulse (Team 067)
 
-Team repository for **Build with AI: Code for Communities** — GDG Coimbatore
-(hackathon **Aug 8–9, 2026**, GRD College).
+**FilePulse** is an AI-powered Early Warning Radar for e-Office File Bottlenecks. Built for the Tech for Good 2026 Hackathon (Strong Institutions track).
 
-Everything your team does lives here from day one: the proposal, code, docs, and
-progress. Organizers follow along through this repo, so keep it active.
+It transforms passive e-Office logs into an active diagnostic tool by deterministically detecting stuck ("rotting") and bouncing ("looping") files, explaining them using a local AI model, and surfacing them in a React dashboard.
 
-## Start here
-1. **Fill in [`PROPOSAL.md`](./PROPOSAL.md)** and commit it by **Jul 24, 11:59 PM IST**. That's your Ideation-Phase submission.
-2. **Add your teammates** as collaborators (Settings → Collaborators), or ask your organizer to add them by GitHub username.
-3. **Build in the open** — commit early and often. Put source in `/src`, notes and diagrams in `/docs`.
+## Quick Start
 
-## Repo layout
-| Path | For |
-|------|-----|
-| `PROPOSAL.md` | Your architecture proposal (the submission) |
-| `/src` | Application code |
-| `/docs` | Design notes, diagrams, research |
-| Issues | Track tasks; use the **Progress update** template for weekly check-ins |
+### Backend
+Requires Python 3.11+ and `uv`.
+```bash
+cd src/backend
+cp .env.example .env
+uv run uvicorn main:app --reload --host 127.0.0.1 --port 8000
+```
 
-## Ground rules
-- Teams are **2–4 people**.
-- Keep the repo **public** — it's part of the open-source, tech-for-good spirit and helps judging.
-- Use the four SDG tracks; build something that helps a real community.
+### Frontend
+Requires Node.js 18+.
+```bash
+cd src/frontend
+npm install
+npm run dev
+```
 
-Questions? Ping the organizers in the mixer WhatsApp group or open an issue.
+### AI Requirements
+Ensure [Ollama](https://ollama.com) is installed and running locally with the required model:
+```bash
+ollama run qwen2.5:7b-instruct
+```
 
-— GDG Coimbatore · TiE Kovai Con · GRD College · Startup Culture
+## Documentation Guide
+
+The project is heavily documented to ensure consistency. Read these files to understand the system:
+
+| File | Purpose |
+|------|---------|
+| `README.md` | This file; project overview and setup instructions. |
+| `SPECS.md` | Complete product specification, target user persona, and API design. |
+| `PROPOSAL.md` | The high-level problem statement, architecture diagram, and tech stack. |
+| `AGENTS.md` | Strict project rules, tech stack constraints, and development guidelines. |
+| `PROGRESS.md` | Living task tracker, codebase state snapshot, and decision log. |
+| `MILESTONES.md` | Hackathon timeline and checklist. |
+| `docs/detection_algorithms.md` | The exact logic and math behind the Rotting and Looping detection engines. |
+
+## Repository Layout
+- `/src/backend`: FastAPI application, SQLite ingestion, and Detection Engine.
+- `/src/frontend`: React (Vite) dashboard application.
+- `/docs`: Detailed architectural and algorithmic documentation.
+
+— Team 067
