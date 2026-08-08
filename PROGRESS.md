@@ -10,7 +10,7 @@
 
 ## In Progress / Blocked
 
-- [ ] Loop detector CSV smoke check | local Python environment is missing Pydantic; no dependency installation or test files requested
+- [x] 2026-08-08 tests/test_loop_detector.py — user and department loop alerts, legitimate single round-trip, and closed-file exclusion coverage added
 - [ ] app/core/risk_scorer.py — risk scoring not implemented
 - [ ] main.py — startup detection + AI pre-generation not wired
 - [ ] app/api/routes.py — all 6 endpoints missing
@@ -47,6 +47,7 @@
 | app/core/risk_scorer.py | Missing |
 | app/api/routes.py | Missing |
 | tests/test_stuck_detector.py | Done — rotting threshold, closed-file, zero-event, overdue escalation coverage |
+| tests/test_loop_detector.py | Done — user/department loops, legitimate round-trip, closed-file exclusion coverage |
 | tests/test_validation.py | Missing |
 
 ### Data (src/backend/data/)
