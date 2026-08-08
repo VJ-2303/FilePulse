@@ -114,3 +114,22 @@ class AiInsight(BaseModel):
     confidence: Confidence
     source: InsightSource
     generated_at: datetime
+
+
+class ConsolidatedAlert(BaseModel):
+    file_id: str
+    file_title: str
+    file_type: str
+    priority: str
+    alert_types: list[str]
+    severity: str
+    risk_score: int
+    current_holder_name: str
+    days_inactive: int | None = None
+    deadline_at: datetime
+    days_to_deadline: int | None = None
+    is_overdue: bool
+    loop_round_trips: int | None = None
+    skipped_stages: str | None = None
+    ai_summary: str | None = None
+    ai_confidence: str | None = None
