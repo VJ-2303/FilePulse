@@ -21,21 +21,34 @@ import { User, FileText } from 'lucide-react';
 const OrgNode = ({ data, isConnectable }) => {
   return (
     <div className={cn(
-      "px-4 py-3 rounded-xl border bg-white shadow-sm transition-all min-w-[200px]",
+      "px-5 py-4 rounded-xl border bg-white shadow-sm transition-all min-w-[240px] hover:border-sky-300 hover:shadow-md cursor-pointer group",
       data.highlighted ? "border-sky-500 shadow-md ring-4 ring-sky-50" : "border-slate-200",
       data.stuck ? "border-rose-500 shadow-md ring-4 ring-rose-50" : ""
     )}>
       <Handle type="target" position={Position.Top} isConnectable={isConnectable} className="opacity-0" />
-      <div className="flex items-center gap-3">
+      <div className="flex items-start gap-4">
         <div className={cn(
-          "p-2 rounded-lg",
-          data.highlighted ? "bg-sky-100 text-sky-600" : "bg-slate-100 text-slate-500"
+          "p-2.5 rounded-xl border shadow-sm shrink-0 transition-colors flex flex-col items-center justify-center",
+          data.highlighted ? "bg-sky-100 text-sky-600 border-sky-200" : "bg-slate-50 text-slate-500 border-slate-100 group-hover:bg-sky-50 group-hover:text-sky-600"
         )}>
-          <User className="w-5 h-5" />
+          <User className="w-6 h-6" />
         </div>
-        <div>
-          <div className="text-sm font-bold text-slate-900">{data.name}</div>
-          <div className="text-xs text-slate-500">{data.role}</div>
+        <div className="flex-1 min-w-0 pt-0.5">
+          <div className="text-sm font-black text-slate-900 truncate group-hover:text-sky-700 transition-colors">{data.name}</div>
+          <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mt-1 truncate">{data.role}</div>
+          
+          <div className="mt-3 flex items-center gap-2">
+            <div className="text-[11px] font-bold text-slate-500 flex items-center gap-1.5 bg-slate-50 px-2 py-1 rounded-md border border-slate-100 w-fit">
+              <FileText className="w-3.5 h-3.5 text-sky-500" />
+              {data.active_files || 0} Files
+            </div>
+            {data.alerted_files > 0 && (
+              <div className="text-[11px] font-bold text-rose-600 flex items-center gap-1 bg-rose-50 px-2 py-1 rounded-md border border-rose-100 w-fit">
+                <div className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse"></div>
+                {data.alerted_files} Alerts
+              </div>
+            )}
+          </div>
         </div>
       </div>
       <Handle type="source" position={Position.Bottom} isConnectable={isConnectable} className="opacity-0" />
