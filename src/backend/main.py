@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api.routes import router
 from app.core.orchestrator import run_full_pipeline
 from app.db import get_connection
 
@@ -14,8 +13,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-app.include_router(router)
 
 
 @app.on_event("startup")

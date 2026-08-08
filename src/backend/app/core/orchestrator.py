@@ -33,6 +33,11 @@ async def run_full_pipeline(
         raise ValueError("top_k_ai_insights must be non-negative")
 
     reference_time = now or datetime.fromisoformat(REFERENCE_NOW)
+
+    # Snapshot any previously generated ollama insights before ingest wipes the DB.
+    # Alert IDs are deterministic so we can restore the cache and skip re-calling Ollama.
+    cached_insights: dict[str, AiInsight] = _load_ollama_insights(conn)
+
     init_db(conn)
     ingest_csv_data(conn, data_dir)
 
@@ -46,7 +51,7 @@ async def run_full_pipeline(
 
     files, employees, events = _load_data(conn)
     insights = await _generate_top_insights(
-        scored_alerts, files, events, top_k_ai_insights
+        scored_alerts, files, events, top_k_ai_insights, cached_insights
     )
     insert_ai_insights(conn, insights)
     consolidated_alerts = consolidate_alerts(scored_alerts, files, employees, insights)
@@ -72,6 +77,7 @@ async def _generate_top_insights(
     files: list[FileRecord],
     events: list[Event],
     top_k: int,
+    cached_insights: dict[str, AiInsight] | None = None,
 ) -> list[AiInsight]:
     files_by_id = {file_record.file_id: file_record for file_record in files}
     events_by_file: dict[str, list[Event]] = {}
@@ -88,8 +94,14 @@ async def _generate_top_insights(
     ]
     primary_alerts.sort(key=lambda alert: (-alert.risk_score, alert.file_id, alert.alert_id))
 
+    cache = cached_insights or {}
     insights: list[AiInsight] = []
     for alert in primary_alerts[:top_k]:
+        # Serve from cache if a prior ollama insight exists for this alert_id.
+        if alert.alert_id in cache:
+            insights.append(cache[alert.alert_id])
+            continue
+
         alert_types = {item.alert_type for item in alerts_by_file[alert.file_id]}
         insights.append(
             await generate_insight(
@@ -100,6 +112,18 @@ async def _generate_top_insights(
             )
         )
     return insights
+
+
+def _load_ollama_insights(conn: sqlite3.Connection) -> dict[str, AiInsight]:
+    """Return a mapping of alert_id → AiInsight for all ollama-sourced insights in DB."""
+    try:
+        rows = conn.execute(
+            "SELECT * FROM ai_insights WHERE source = 'ollama'"
+        ).fetchall()
+        return {row["alert_id"]: AiInsight.model_validate(dict(row)) for row in rows}
+    except Exception:
+        # Table may not exist yet on first boot.
+        return {}
 
 
 def _event_data(row: dict) -> dict:

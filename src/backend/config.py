@@ -1,4 +1,9 @@
 import os
+from pathlib import Path
+
+from dotenv import load_dotenv
+
+load_dotenv(Path(__file__).parent / ".env")
 
 REFERENCE_NOW = "2025-03-18T09:00:00"
 
