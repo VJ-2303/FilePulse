@@ -21,10 +21,9 @@ async def generate_insight(
     Calls Ollama to generate a plain-language insight for a detected alert.
     Falls back to rule-based text on any failure — the dashboard never breaks.
     """
-    last_events = events[-8:]
     events_str = [
         f"[{e.timestamp.strftime('%Y-%m-%d %H:%M')}] {e.action} from {e.from_user_id} to {e.to_user_id}. Note: {e.note_text}"
-        for e in last_events
+        for e in events
     ]
 
     facts = {
