@@ -8,7 +8,7 @@ from app.models import AiInsight, Alert, Employee, Event, FileRecord
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 DATA_DIR = BASE_DIR / "data"
-DB_PATH = BASE_DIR / "filepulse.sqlite3"
+DB_PATH = DATA_DIR / "filepulse.sqlite3"
 
 
 def get_connection(db_path: Path = DB_PATH) -> sqlite3.Connection:
