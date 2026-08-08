@@ -1,0 +1,10 @@
+employee_id,name,role,department,manager_id
+E090,S. Mehta,Under Secretary,Administration Directorate,
+E100,R. Iyer,Section Officer,General Administration Section,E090
+E101,Amit Kumar,Junior Assistant,General Administration Section,E100
+E102,Priya Sharma,Junior Assistant,General Administration Section,E100
+E103,Kavita Nair,Junior Assistant,General Administration Section,E100
+E201,A. Rao,Section Officer (Finance),Finance Department,
+E202,S. Gupta,Assistant (Finance),Finance Department,E201
+E301,P. Singh,Section Officer (PWD),Public Works Department,
+E302,M. Das,Assistant Engineer,Public Works Department,E301
