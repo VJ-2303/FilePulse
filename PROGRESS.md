@@ -9,7 +9,7 @@
 | File | Status |
 |---|---|
 | config.py | Done |
-| main.py | Done structurally — imports `orchestrator.run_full_pipeline` and `api.routes.router`, **but both are missing on disk → server will not start** |
+| main.py | Done structurally — startup invokes `orchestrator.run_full_pipeline`; `api.routes.router` remains pending |
 | app/models.py | Done — Employee, FileRecord, Event, Alert, AiInsight, ConsolidatedAlert |
 | app/db.py | Done — 5 tables, CSV ingestion, insert_alerts, insert_ai_insights |
 | app/AI/prompt.py | Done |
@@ -19,16 +19,17 @@
 | app/core/conformance_detector.py | Done — 3/3 tests passing |
 | app/core/risk_scorer.py | Done — 3/3 tests passing |
 | app/core/alert_consolidator.py | Done — 6/6 tests passing |
-| app/core/orchestrator.py | **Missing** — blocks server startup |
+| app/core/orchestrator.py | Done — ingests CSVs, detects rotting/looping/conformance, scores and persists alerts, consolidates UI rows, and caches top-10 AI insights |
 | app/api/routes.py | **Missing** — all 6 endpoints absent |
 | tests/test_stuck_detector.py | Done |
 | tests/test_loop_detector.py | Done |
 | tests/test_conformance_detector.py | Done |
 | tests/test_risk_scorer.py | Done |
 | tests/test_alert_consolidator.py | Done |
+| tests/test_orchestrator.py | Done — in-memory ingestion, detection, scoring, persistence, and consolidation integration coverage |
 | tests/test_validation.py | Missing — end-to-end integration test |
 
-**Test count:** 19/19 passing (unit tests only)
+**Test count:** 20/20 passing (detector, scorer, consolidator, and orchestrator tests)
 
 ### Data (src/backend/data/)
 
@@ -36,7 +37,7 @@
 |---|---|
 | employee.csv | Present — 9 employees |
 | files.csv | Present — 12 files (11 active, 1 closed F9310) |
-| events.csv | Present — 60 events |
+| events.csv | Present — 59 events |
 | filepulse.sqlite3 | Generated at startup |
 
 ### Frontend (src/frontend/src/)
@@ -89,15 +90,7 @@ F6624 is compound (ROTTING + LOOPING) — +15 risk score bonus applies.
 
 ## Next Up
 
-1. **`app/core/orchestrator.py`** ← unblocks server startup
-   - Run all 3 detectors (stuck, loop, conformance)
-   - Call `score_alerts()` with all alerts + files
-   - Call `insert_alerts()` to persist to SQLite
-   - Rank by risk_score, take top 10
-   - Call `generate_insight()` for each, store via `insert_ai_insights()`
-   - Must be `async def run_full_pipeline(conn, top_k_ai_insights=10)`
-
-2. **`app/api/routes.py`** ← 6 endpoints per SPECS.md §8
+1. **`app/api/routes.py`** ← 6 endpoints per SPECS.md §8
    - `GET /api/dashboard/summary` — KPI counts
    - `GET /api/alerts?type=all|rotting|looping|conformance` — consolidated red list sorted by risk_score desc
    - `GET /api/files/{file_id}/journey` — file metadata + events + AI insight
@@ -105,6 +98,6 @@ F6624 is compound (ROTTING + LOOPING) — +15 risk score bonus applies.
    - `GET /api/org/tree` — employee hierarchy with file counts
    - `POST /api/alerts/{alert_id}/ai-insight` — regenerate single insight
 
-3. **`tests/test_validation.py`** — end-to-end: spin up DB, run pipeline, assert all expected alerts present
+2. **`tests/test_validation.py`** — end-to-end: spin up DB, run pipeline, assert all expected alerts present
 
-4. **Frontend** — api/client.js, DashboardPage (Red List), FileDetailPage (ReactFlow journey), WorkloadPage
+3. **Frontend** — api/client.js, DashboardPage (Red List), FileDetailPage (ReactFlow journey), WorkloadPage
