@@ -26,16 +26,7 @@ EventAction = Literal[
     "CLARIFICATION_PROVIDED",
 ]
 
-FileType = Literal[
-    "Infrastructure",
-    "Procurement",
-    "Service Benefits",
-    "Training",
-    "Records",
-    "Welfare",
-    "HR",
-    "Administration",
-]
+FileType = str
 
 
 class CsvModel(BaseModel):
