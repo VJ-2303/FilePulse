@@ -8,7 +8,7 @@ import { cn } from '../utils/classNames';
 export default function FileDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  
+
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -36,7 +36,7 @@ export default function FileDetailPage() {
       {/* Header Section */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
         <div className="flex items-start gap-4">
-          <button 
+          <button
             onClick={() => navigate(-1)}
             className="p-2 mt-1 hover:bg-slate-100 rounded-xl transition-colors text-slate-500 hover:text-slate-900 border border-transparent hover:border-slate-200"
           >
@@ -59,7 +59,7 @@ export default function FileDetailPage() {
 
         {/* Action Navigation */}
         <div className="flex self-start md:self-auto">
-          <button 
+          <button
             onClick={() => navigate(`/files/${id}/journey`)}
             className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold transition-all duration-300 bg-slate-900 text-white shadow-[0_0_15px_rgba(0,0,0,0.1)] hover:shadow-[0_0_20px_rgba(0,0,0,0.2)] hover:bg-slate-800 border border-slate-800 hover:-translate-y-0.5"
           >
@@ -71,7 +71,7 @@ export default function FileDetailPage() {
 
       {/* Content: DETAILS */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 animate-in slide-in-from-left-4 duration-300">
-        
+
         <div className="lg:col-span-2 space-y-6">
           <Card className="border-0 shadow-[0_4px_20px_rgb(0,0,0,0.03)] bg-white/50">
             <h2 className="text-xl font-black text-slate-900 mb-8 flex items-center gap-3 border-b border-slate-200/60 pb-4">
@@ -83,10 +83,10 @@ export default function FileDetailPage() {
                 <div key={evt.event_id} className="relative group">
                   {/* Timeline dot */}
                   <div className="absolute -left-[40px] w-5 h-5 rounded-full bg-white border-[4px] border-slate-300 group-hover:border-sky-400 transition-colors shadow-[0_0_0_4px_white] z-10 top-6" />
-                  
+
                   {/* Content Container */}
                   <div className="bg-white rounded-2xl p-6 border border-slate-200/60 shadow-sm hover:shadow-md transition-shadow">
-                    
+
                     {/* Timestamp & Phase */}
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5 pb-4 border-b border-slate-50">
                       <div className="flex items-center gap-2">
@@ -97,7 +97,7 @@ export default function FileDetailPage() {
                         {new Date(evt.timestamp).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' })}
                       </div>
                     </div>
-                    
+
                     {/* Action Flow */}
                     <div className="mb-4">
                       {evt.is_transfer ? (
@@ -112,7 +112,7 @@ export default function FileDetailPage() {
                               <div className="font-bold text-slate-900 truncate">{evt.from_user_name}</div>
                             </div>
                           </div>
-                          
+
                           {/* Action Arrow */}
                           <div className="flex flex-row sm:flex-col items-center justify-center px-4 shrink-0">
                             <div className="text-[10px] font-black text-sky-600 uppercase tracking-widest bg-sky-100 px-2 py-0.5 rounded shadow-sm mb-0 sm:mb-1 mr-2 sm:mr-0">
@@ -123,7 +123,7 @@ export default function FileDetailPage() {
                             </div>
                             <ArrowRight className="sm:hidden w-4 h-4 text-slate-400" />
                           </div>
-                          
+
                           {/* Receiver */}
                           <div className="flex items-center gap-3 flex-1 sm:justify-end text-left sm:text-right">
                             <div className="min-w-0 order-2 sm:order-1">
@@ -147,7 +147,7 @@ export default function FileDetailPage() {
                         </div>
                       )}
                     </div>
-                    
+
                     {/* Note */}
                     {evt.note_text && (
                       <div className="mt-4 bg-amber-50/40 border border-amber-100/50 p-4 rounded-xl relative">
@@ -202,14 +202,14 @@ export default function FileDetailPage() {
                   <p className="text-sm text-slate-700 leading-relaxed mb-4">
                     {ai_insight.plain_language_summary}
                   </p>
-                  
+
                   {ai_insight.likely_blocker && (
                     <div className="mb-3 bg-white p-2.5 rounded-lg border border-sky-100">
                       <h4 className="text-xs font-black text-sky-800 uppercase tracking-widest mb-1">Likely Blocker</h4>
                       <p className="text-sm text-slate-700">{ai_insight.likely_blocker}</p>
                     </div>
                   )}
-                  
+
                   {ai_insight.recommended_action && (
                     <div className="bg-emerald-50 p-2.5 rounded-lg border border-emerald-100">
                       <h4 className="text-xs font-black text-emerald-700 uppercase tracking-widest mb-1">Recommended Action</h4>

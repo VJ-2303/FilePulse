@@ -35,15 +35,15 @@ export function Sidebar() {
           const isActiveQuery = link.path === "/" ? currentQuery === link.query : true;
           const active = isActivePath && isActiveQuery;
           const Icon = link.icon;
-          
+
           return (
             <Link
               key={link.label}
               to={`${link.path}${link.query}`}
               className={cn(
                 "group flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-300 ease-out relative overflow-hidden",
-                active 
-                  ? "text-sky-700 bg-sky-50 shadow-sm border border-sky-100/50" 
+                active
+                  ? "text-sky-700 bg-sky-50 shadow-sm border border-sky-100/50"
                   : "text-slate-600 hover:bg-slate-50 hover:text-slate-900 border border-transparent"
               )}
             >

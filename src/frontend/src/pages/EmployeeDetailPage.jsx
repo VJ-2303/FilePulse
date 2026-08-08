@@ -42,10 +42,10 @@ export default function EmployeeDetailPage() {
 
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12 max-w-5xl mx-auto">
-      
+
       {/* Header Section */}
       <div className="flex items-start gap-5 bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
-        <button 
+        <button
           onClick={() => navigate(-1)}
           className="p-3 mt-1 bg-slate-50 hover:bg-slate-100 rounded-2xl transition-colors text-slate-500 hover:text-slate-900 border border-slate-200"
         >
@@ -65,7 +65,7 @@ export default function EmployeeDetailPage() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
+
         {/* Left Column: Stats & Meta */}
         <div className="space-y-6">
           <Card className="bg-gradient-to-br from-slate-900 to-slate-800 border-0 shadow-xl p-8">
@@ -78,9 +78,9 @@ export default function EmployeeDetailPage() {
                 </div>
                 <div className="text-3xl font-black text-white">{workload.active_file_count}</div>
               </div>
-              
+
               <div className="w-full h-px bg-slate-700/50" />
-              
+
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3 text-rose-400">
                   <AlertTriangle className="w-5 h-5" />
@@ -99,7 +99,7 @@ export default function EmployeeDetailPage() {
               <CheckCircle className="w-6 h-6 text-emerald-500" />
               Currently Assigned Files
             </h2>
-            
+
             {workload.files.length === 0 ? (
               <div className="text-center py-12 text-slate-500 bg-slate-50 rounded-2xl border border-slate-100 border-dashed">
                 <p className="font-semibold text-lg">No active files assigned.</p>
@@ -108,7 +108,7 @@ export default function EmployeeDetailPage() {
             ) : (
               <div className="space-y-4">
                 {workload.files.map(file => (
-                  <div 
+                  <div
                     key={file.file_id}
                     onClick={() => navigate(`/files/${file.file_id}`)}
                     className="p-5 bg-white border border-slate-200 rounded-2xl shadow-sm hover:border-sky-300 hover:shadow-md transition-all cursor-pointer group flex flex-col sm:flex-row sm:items-center justify-between gap-4"
@@ -120,23 +120,23 @@ export default function EmployeeDetailPage() {
                         <span>{file.file_type}</span>
                       </div>
                     </div>
-                    
+
                     <div className="flex flex-wrap items-center gap-2 sm:justify-end shrink-0">
                       <Badge variant={file.priority === 'High' ? 'danger' : 'default'} className="px-3 py-1 text-xs">
                         {file.priority}
                       </Badge>
-                      
+
                       {file.is_overdue && (
                         <Badge variant="danger" className="px-3 py-1 text-xs uppercase tracking-wider">Overdue</Badge>
                       )}
-                      
+
                       {file.days_inactive !== null && file.days_inactive > 0 && (
                         <div className="flex items-center gap-1.5 text-xs font-bold px-3 py-1 bg-orange-50 text-orange-700 rounded-full border border-orange-200 shadow-sm">
                           <Clock className="w-3.5 h-3.5" />
                           {file.days_inactive} days stuck
                         </div>
                       )}
-                      
+
                       {file.alert_types && file.alert_types.map(alert => (
                         <Badge key={alert} variant="warning" className="px-3 py-1 text-xs uppercase tracking-wider shadow-sm">
                           {alert}
@@ -149,7 +149,7 @@ export default function EmployeeDetailPage() {
             )}
           </Card>
         </div>
-        
+
       </div>
     </div>
   );

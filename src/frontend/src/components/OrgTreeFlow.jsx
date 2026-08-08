@@ -36,7 +36,7 @@ const OrgNode = ({ data, isConnectable }) => {
         <div className="flex-1 min-w-0 pt-0.5">
           <div className="text-sm font-black text-slate-900 truncate group-hover:text-sky-700 transition-colors">{data.name}</div>
           <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mt-1 truncate">{data.role}</div>
-          
+
           <div className="mt-3 flex items-center gap-2">
             <div className="text-[11px] font-bold text-slate-500 flex items-center gap-1.5 bg-slate-50 px-2 py-1 rounded-md border border-slate-100 w-fit">
               <FileText className="w-3.5 h-3.5 text-sky-500" />
@@ -107,7 +107,7 @@ function FlowContent({ orgTree, currentEvent, onNodeClick }) {
     const newNodes = initialNodes.map(node => {
       let highlighted = false;
       let stuck = false;
-      
+
       if (currentEvent) {
         if (node.id === currentEvent.to_user_id || node.id === currentEvent.from_user_id) {
           highlighted = true;
@@ -125,17 +125,17 @@ function FlowContent({ orgTree, currentEvent, onNodeClick }) {
     });
 
     const newEdges = [...initialEdges];
-    
+
     // If there's a current event, draw a special edge for the transfer
     if (currentEvent && currentEvent.is_transfer) {
       // Check if this edge already exists in org structure
-      const existingIdx = newEdges.findIndex(e => 
+      const existingIdx = newEdges.findIndex(e =>
         (e.source === currentEvent.from_user_id && e.target === currentEvent.to_user_id) ||
         (e.source === currentEvent.to_user_id && e.target === currentEvent.from_user_id)
       );
 
       const highlightStyle = { stroke: '#0ea5e9', strokeWidth: 3 };
-      
+
       if (existingIdx >= 0) {
         newEdges[existingIdx] = {
           ...newEdges[existingIdx],

@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 export default function OrgTreePage() {
   const [orgTree, setOrgTree] = useState(null);
   const [loading, setLoading] = useState(true);
-  
+
   const navigate = useNavigate();
 
   useEffect(() => {
