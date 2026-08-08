@@ -1,60 +1,201 @@
 event_id,file_id,timestamp,action,from_user_id,to_user_id,department,stage,note_text
-EV1001,F4921,2025-01-28T09:30:00,RECEIPT_DIARISED,E100,E100,General Administration Section,Receipt,"Grant application received from District Education Office. Diarised."
-EV1002,F4921,2025-01-30T12:00:00,NOTE_ADDED,E100,E100,General Administration Section,Initial Review,"Roof repair grant is urgent before pre-monsoon rains. Examine priority."
-EV1003,F4921,2025-02-01T10:05:00,ASSIGNED,E100,E101,General Administration Section,Initial Review,"Assigned to Amit for initial examination and draft note."
-EV1004,F4921,2025-02-01T10:20:00,FILE_OPENED,E101,E101,General Administration Section,Initial Review,"File opened."
-EV1005,F8832,2025-02-20T10:00:00,FILE_CREATED,E100,E100,General Administration Section,Creation,"File opened for procurement of 50 computers for section modernisation."
-EV1006,F8832,2025-02-21T09:45:00,ASSIGNED,E100,E102,General Administration Section,Initial Review,"Priya to prepare procurement proposal and budget note."
-EV1007,F8832,2025-02-24T15:30:00,NOTE_ADDED,E102,E102,General Administration Section,Initial Review,"Draft proposal ready. Sending to Finance for budget approval."
-EV1008,F8832,2025-03-01T11:00:00,FORWARDED,E102,E201,General Administration Section,Budget Check,"Please approve."
-EV1009,F8832,2025-03-04T12:15:00,CLARIFICATION_REQUESTED,E201,E102,Finance Department,Budget Check,"Need more details."
-EV1010,F8832,2025-03-07T10:40:00,CLARIFICATION_PROVIDED,E102,E201,General Administration Section,Budget Check,"Attached the brochure."
-EV1011,F8832,2025-03-10T15:05:00,CLARIFICATION_REQUESTED,E201,E102,Finance Department,Budget Check,"No, we need the exact price breakdown."
-EV1012,F8832,2025-03-12T11:30:00,CLARIFICATION_PROVIDED,E102,E201,General Administration Section,Budget Check,"Price breakdown attached as Annexure A."
-EV1013,F8832,2025-03-13T16:20:00,CLARIFICATION_REQUESTED,E201,E102,Finance Department,Budget Check,"Budget provision for Q3 not indicated. Please confirm."
-EV1014,F1104,2025-03-03T09:15:00,RECEIPT_DIARISED,E100,E100,General Administration Section,Receipt,"Pension clearance case received from Personnel branch."
-EV1015,F1104,2025-03-03T09:40:00,ASSIGNED,E100,E103,General Administration Section,Verification,"Kavita to verify service record and dues."
-EV1016,F1104,2025-03-05T11:20:00,NOTE_ADDED,E103,E103,General Administration Section,Verification,"Service record verified. No dues pending."
-EV1017,F1104,2025-03-06T10:10:00,FORWARDED,E103,E100,General Administration Section,Approval,"Verification complete. Submitted for approval."
-EV1018,F1104,2025-03-07T12:00:00,FORWARDED,E100,E201,General Administration Section,Pension Verification,"Please verify pension calculation and disbursement."
-EV1019,F1104,2025-03-10T14:30:00,FORWARDED,E201,E100,Finance Department,Pension Verification,"Calculations verified. Returned for final approval."
-EV1020,F1104,2025-03-17T09:50:00,NOTE_ADDED,E100,E100,General Administration Section,Approval,"Final approval note under drafting."
-EV1021,F2210,2025-02-10T11:00:00,FILE_CREATED,E100,E100,General Administration Section,Creation,"File for Q4 office supplies purchase."
-EV1022,F2210,2025-02-11T09:30:00,ASSIGNED,E100,E103,General Administration Section,Initial Review,"Kavita to compile section indent."
-EV1023,F2210,2025-02-18T12:45:00,NOTE_ADDED,E103,E103,General Administration Section,Initial Review,"Indent compiled from all desks."
-EV1024,F2210,2025-02-26T10:15:00,RETURNED,E100,E103,General Administration Section,Initial Review,"Estimate exceeds Q4 budget ceiling. Revise indent."
-EV1025,F3305,2025-03-10T09:00:00,FILE_CREATED,E100,E100,General Administration Section,Creation,"Approval for state training program nominations."
-EV1026,F3305,2025-03-10T09:30:00,ASSIGNED,E100,E102,General Administration Section,Initial Review,"Priya to compile nominations."
-EV1027,F3305,2025-03-12T11:00:00,FORWARDED,E102,E100,General Administration Section,Approval,"Nominations compiled. Submitted for approval."
-EV1028,F3305,2025-03-14T10:20:00,NOTE_ADDED,E100,E100,General Administration Section,Approval,"Approved in principle. Draft approval order."
-EV1029,F5518,2024-08-10T10:30:00,RECEIPT_DIARISED,E100,E100,General Administration Section,Receipt,"Medical reimbursement claim received from retired employee."
-EV1030,F5518,2024-08-12T09:50:00,ASSIGNED,E100,E103,General Administration Section,Verification,"Kavita to verify hospital bills against entitlement."
-EV1031,F5518,2024-09-05T12:30:00,FILE_OPENED,E103,E103,General Administration Section,Verification,"File opened. Bills under examination."
-EV1032,F6624,2025-01-15T09:00:00,RECEIPT_DIARISED,E301,E301,Public Works Department,Receipt,"Road resurfacing estimate received from field office."
-EV1033,F6624,2025-01-20T10:00:00,ASSIGNED,E301,E302,Public Works Department,Estimate Review,"Das to check and finalise estimate."
-EV1034,F6624,2025-02-03T11:10:00,FORWARDED,E302,E201,Public Works Department,Budget Check,"Estimate submitted for financial concurrence."
-EV1035,F6624,2025-02-06T15:40:00,CLARIFICATION_REQUESTED,E201,E302,Finance Department,Budget Check,"Rate analysis for tar work missing."
-EV1036,F6624,2025-02-10T10:25:00,CLARIFICATION_PROVIDED,E302,E201,Public Works Department,Budget Check,"Rate analysis attached."
-EV1037,F6624,2025-02-14T12:50:00,CLARIFICATION_REQUESTED,E201,E302,Finance Department,Budget Check,"Please attach previous year's budget spend."
-EV1038,F6624,2025-02-18T09:55:00,CLARIFICATION_PROVIDED,E302,E201,Public Works Department,Budget Check,"Previous year spend statement attached."
-EV1039,F6624,2025-02-21T16:10:00,CLARIFICATION_REQUESTED,E201,E302,Finance Department,Budget Check,"Estimate exceeds delegated limit. Get HoD approval first."
-EV1040,F7741,2025-03-05T10:00:00,RECEIPT_DIARISED,E100,E100,General Administration Section,Receipt,"Land record correction application diarised."
-EV1041,F7741,2025-03-06T09:40:00,ASSIGNED,E100,E101,General Administration Section,Receipt,"Amit to process correction request."
-EV1042,F7741,2025-03-06T14:20:00,FORWARDED,E101,E100,General Administration Section,Approval,"Sent for approval directly."
-EV1043,F8123,2025-02-25T09:30:00,FILE_CREATED,E100,E100,General Administration Section,Creation,"Post-matric scholarship disbursement file."
-EV1044,F8123,2025-02-26T10:00:00,ASSIGNED,E100,E102,General Administration Section,Initial Review,"Priya to prepare disbursement list."
-EV1045,F8123,2025-03-01T12:00:00,FORWARDED,E102,E202,General Administration Section,Funds Verification,"Disbursement list sent for funds verification."
-EV1046,F8123,2025-03-03T09:20:00,NOTE_ADDED,E202,E202,Finance Department,Funds Verification,"Handling officer is on leave. Will process on return."
-EV1047,F9034,2025-02-01T09:00:00,FILE_CREATED,E100,E100,General Administration Section,Creation,"AMC renewal for section servers."
-EV1048,F9034,2025-02-03T10:30:00,ASSIGNED,E100,E101,General Administration Section,Initial Review,"Amit to obtain AMC quote from empanelled vendor."
-EV1049,F9034,2025-02-10T12:00:00,NOTE_ADDED,E101,E101,General Administration Section,Initial Review,"Quote received from vendor."
-EV1050,F9034,2025-02-12T11:45:00,FORWARDED,E101,E201,General Administration Section,Budget Check,"Quote submitted for financial concurrence."
-EV1051,F9034,2025-02-20T15:10:00,FORWARDED,E201,E101,Finance Department,Budget Check,"Concurrence given. Please draft renewal order."
-EV1052,F9034,2025-03-16T10:40:00,NOTE_ADDED,E101,E101,General Administration Section,Approval,"Renewal order drafted. Putting up for signature."
-EV1053,F9310,2025-01-05T09:00:00,FILE_CREATED,E100,E100,General Administration Section,Creation,"Recruitment of data entry operators."
-EV1054,F9310,2025-01-08T10:00:00,ASSIGNED,E100,E102,General Administration Section,Initial Review,"Priya to draft advertisement."
-EV1055,F9310,2025-01-20T11:30:00,FORWARDED,E102,E100,General Administration Section,Approval,"Advertisement draft submitted."
-EV1056,F9310,2025-02-01T12:00:00,APPROVED,E100,E100,General Administration Section,Approval,"Advertisement approved."
-EV1057,F9310,2025-02-20T17:00:00,CLOSED,E100,E100,General Administration Section,Dispatch,"Recruitment completed. File closed."
-EV1058,F9555,2025-03-15T14:00:00,RECEIPT_DIARISED,E100,E100,General Administration Section,Receipt,"Receipt received on Saturday; diarised on arrival."
-EV1059,F9555,2025-03-17T09:30:00,ASSIGNED,E100,E101,General Administration Section,Initial Review,"Amit to examine vehicle availability."
+EV1001,F5001,2025-01-06T09:15:00,RECEIPT_DIARISED,E301,E301,Public Works Department,Receipt,PWD received the nh-48 culvert repair estimate proposal and registered it in the file system.
+EV1002,F5001,2025-01-07T10:15:00,ASSIGNED,E301,E302,Public Works Department,Initial Review,"Section Officer assigned the file to E302 to examine the proposal, estimate, and supporting documents."
+EV1003,F5001,2025-01-09T11:15:00,NOTE_ADDED,E302,E302,Public Works Department,Technical Review,"Technical examination completed. Quantity, site details, estimate, and supporting documents were checked."
+EV1004,F5001,2025-01-11T12:15:00,FORWARDED,E302,E201,Public Works Department,Budget Check,PWD forwarded the file to Finance for budget availability and financial concurrence.
+EV1005,F5001,2025-01-14T14:15:00,CLARIFICATION_REQUESTED,E201,E302,Finance Department,Budget Check,Finance requested the detailed rate analysis because the estimate did not show the basis for the proposed rates.
+EV1006,F5001,2025-01-16T11:15:00,CLARIFICATION_PROVIDED,E302,E201,Public Works Department,Budget Check,PWD attached the detailed rate analysis and updated the estimate with the supporting calculation.
+EV1007,F5001,2025-01-19T13:15:00,CLARIFICATION_REQUESTED,E201,E302,Finance Department,Budget Check,Finance found one more missing supporting document and returned the file to PWD for correction before concurrence.
+EV1008,F5001,2025-01-21T10:15:00,CLARIFICATION_PROVIDED,E302,E201,Public Works Department,Budget Check,PWD supplied the additional document and corrected the file so Finance could continue the concurrence process.
+EV1009,F5002,2025-01-10T10:00:00,RECEIPT_DIARISED,E301,E301,Public Works Department,Receipt,PWD received the district hospital approach road repair proposal and registered it in the file system.
+EV1010,F5002,2025-01-11T11:00:00,ASSIGNED,E301,E303,Public Works Department,Initial Review,"Section Officer assigned the file to E303 to examine the proposal, estimate, and supporting documents."
+EV1011,F5002,2025-01-13T12:00:00,NOTE_ADDED,E303,E303,Public Works Department,Technical Review,"Technical examination completed. Quantity, site details, estimate, and supporting documents were checked."
+EV1012,F5002,2025-01-15T13:00:00,FORWARDED,E303,E201,Public Works Department,Budget Check,PWD forwarded the file to Finance for budget availability and financial concurrence.
+EV1013,F5002,2025-01-18T15:00:00,CLARIFICATION_REQUESTED,E201,E303,Finance Department,Budget Check,Finance requested confirmation of the available budget head and the amount already spent under it.
+EV1014,F5002,2025-01-20T12:00:00,CLARIFICATION_PROVIDED,E303,E201,Public Works Department,Budget Check,PWD confirmed the budget head and attached the latest expenditure statement for verification.
+EV1015,F5002,2025-01-23T14:00:00,FORWARDED,E201,E303,Finance Department,Financial Concurrence,Finance completed the budget review and returned the file to PWD with financial concurrence for further action.
+EV1016,F5002,2025-01-25T11:00:00,NOTE_ADDED,E303,E303,Public Works Department,Approval Preparation,PWD received the Finance concurrence and prepared the file for the next approval or sanction stage.
+EV1017,F5003,2025-01-14T09:30:00,RECEIPT_DIARISED,E301,E301,Public Works Department,Receipt,PWD received the government school building roof replacement proposal and registered it in the file system.
+EV1018,F5003,2025-01-15T10:30:00,ASSIGNED,E301,E304,Public Works Department,Initial Review,"Section Officer assigned the file to E304 to examine the proposal, estimate, and supporting documents."
+EV1019,F5003,2025-01-17T11:30:00,NOTE_ADDED,E304,E304,Public Works Department,Technical Review,"Technical examination completed. Quantity, site details, estimate, and supporting documents were checked."
+EV1020,F5003,2025-01-19T12:30:00,FORWARDED,E304,E201,Public Works Department,Budget Check,PWD forwarded the file to Finance for budget availability and financial concurrence.
+EV1021,F5003,2025-01-22T14:30:00,CLARIFICATION_REQUESTED,E201,E304,Finance Department,Budget Check,Finance requested the latest administrative approval and supporting sanction documents before concurrence.
+EV1022,F5003,2025-01-24T11:30:00,CLARIFICATION_PROVIDED,E304,E201,Public Works Department,Budget Check,PWD attached the missing administrative approval and supporting sanction documents.
+EV1023,F5003,2025-01-27T13:30:00,FORWARDED,E201,E304,Finance Department,Financial Concurrence,Finance completed the budget review and returned the file to PWD with financial concurrence for further action.
+EV1024,F5003,2025-01-29T10:30:00,NOTE_ADDED,E304,E304,Public Works Department,Approval Preparation,PWD received the Finance concurrence and prepared the file for the next approval or sanction stage.
+EV1025,F5004,2025-01-20T11:00:00,RECEIPT_DIARISED,E301,E301,Public Works Department,Receipt,PWD received the rural drinking water pipeline extension proposal and registered it in the file system.
+EV1026,F5004,2025-01-21T12:00:00,ASSIGNED,E301,E302,Public Works Department,Initial Review,"Section Officer assigned the file to E302 to examine the proposal, estimate, and supporting documents."
+EV1027,F5004,2025-01-23T13:00:00,NOTE_ADDED,E302,E302,Public Works Department,Technical Review,"Technical examination completed. Quantity, site details, estimate, and supporting documents were checked."
+EV1028,F5004,2025-01-25T14:00:00,FORWARDED,E302,E201,Public Works Department,Budget Check,PWD forwarded the file to Finance for budget availability and financial concurrence.
+EV1029,F5004,2025-01-28T16:00:00,CLARIFICATION_REQUESTED,E201,E302,Finance Department,Budget Check,Finance requested a comparison with the previous year's expenditure to verify that the proposed amount is reasonable.
+EV1030,F5004,2025-01-30T13:00:00,CLARIFICATION_PROVIDED,E302,E201,Public Works Department,Budget Check,PWD attached the previous year's expenditure statement and explained the proposed increase.
+EV1031,F5004,2025-02-02T15:00:00,CLARIFICATION_REQUESTED,E201,E302,Finance Department,Budget Check,Finance found one more missing supporting document and returned the file to PWD for correction before concurrence.
+EV1032,F5004,2025-02-04T12:00:00,CLARIFICATION_PROVIDED,E302,E201,Public Works Department,Budget Check,PWD supplied the additional document and corrected the file so Finance could continue the concurrence process.
+EV1033,F5005,2025-01-24T09:45:00,RECEIPT_DIARISED,E301,E301,Public Works Department,Receipt,PWD received the urban drainage improvement package proposal and registered it in the file system.
+EV1034,F5005,2025-01-25T10:45:00,ASSIGNED,E301,E305,Public Works Department,Initial Review,"Section Officer assigned the file to E305 to examine the proposal, estimate, and supporting documents."
+EV1035,F5005,2025-01-27T11:45:00,NOTE_ADDED,E305,E305,Public Works Department,Technical Review,"Technical examination completed. Quantity, site details, estimate, and supporting documents were checked."
+EV1036,F5005,2025-01-29T12:45:00,FORWARDED,E305,E201,Public Works Department,Budget Check,PWD forwarded the file to Finance for budget availability and financial concurrence.
+EV1037,F5005,2025-02-01T14:45:00,CLARIFICATION_REQUESTED,E201,E305,Finance Department,Budget Check,Finance requested clarification on whether the work falls within the delegated financial approval limit.
+EV1038,F5005,2025-02-03T11:45:00,CLARIFICATION_PROVIDED,E305,E201,Public Works Department,Budget Check,PWD confirmed that the proposal requires higher-level approval and attached the required justification.
+EV1039,F5005,2025-02-06T13:45:00,FORWARDED,E201,E305,Finance Department,Financial Concurrence,Finance completed the budget review and returned the file to PWD with financial concurrence for further action.
+EV1040,F5005,2025-02-08T10:45:00,NOTE_ADDED,E305,E305,Public Works Department,Approval Preparation,PWD received the Finance concurrence and prepared the file for the next approval or sanction stage.
+EV1041,F5006,2025-01-29T10:15:00,RECEIPT_DIARISED,E301,E301,Public Works Department,Receipt,PWD received the pwd guest house electrical upgrade proposal and registered it in the file system.
+EV1042,F5006,2025-01-30T11:15:00,ASSIGNED,E301,E306,Public Works Department,Initial Review,"Section Officer assigned the file to E306 to examine the proposal, estimate, and supporting documents."
+EV1043,F5006,2025-02-01T12:15:00,NOTE_ADDED,E306,E306,Public Works Department,Technical Review,"Technical examination completed. Quantity, site details, estimate, and supporting documents were checked."
+EV1044,F5006,2025-02-03T13:15:00,FORWARDED,E306,E201,Public Works Department,Budget Check,PWD forwarded the file to Finance for budget availability and financial concurrence.
+EV1045,F5006,2025-02-06T15:15:00,CLARIFICATION_REQUESTED,E201,E306,Finance Department,Budget Check,Finance requested the detailed rate analysis because the estimate did not show the basis for the proposed rates.
+EV1046,F5006,2025-02-08T12:15:00,CLARIFICATION_PROVIDED,E306,E201,Public Works Department,Budget Check,PWD attached the detailed rate analysis and updated the estimate with the supporting calculation.
+EV1047,F5006,2025-02-11T14:15:00,FORWARDED,E201,E306,Finance Department,Financial Concurrence,Finance completed the budget review and returned the file to PWD with financial concurrence for further action.
+EV1048,F5006,2025-02-13T11:15:00,NOTE_ADDED,E306,E306,Public Works Department,Approval Preparation,PWD received the Finance concurrence and prepared the file for the next approval or sanction stage.
+EV1049,F5007,2025-02-03T09:00:00,RECEIPT_DIARISED,E301,E301,Public Works Department,Receipt,PWD received the bridge safety inspection – river crossing proposal and registered it in the file system.
+EV1050,F5007,2025-02-04T10:00:00,ASSIGNED,E301,E303,Public Works Department,Initial Review,"Section Officer assigned the file to E303 to examine the proposal, estimate, and supporting documents."
+EV1051,F5007,2025-02-06T11:00:00,NOTE_ADDED,E303,E303,Public Works Department,Technical Review,"Technical examination completed. Quantity, site details, estimate, and supporting documents were checked."
+EV1052,F5007,2025-02-08T12:00:00,FORWARDED,E303,E201,Public Works Department,Budget Check,PWD forwarded the file to Finance for budget availability and financial concurrence.
+EV1053,F5007,2025-02-11T14:00:00,CLARIFICATION_REQUESTED,E201,E303,Finance Department,Budget Check,Finance requested confirmation of the available budget head and the amount already spent under it.
+EV1054,F5007,2025-02-13T11:00:00,CLARIFICATION_PROVIDED,E303,E201,Public Works Department,Budget Check,PWD confirmed the budget head and attached the latest expenditure statement for verification.
+EV1055,F5007,2025-02-16T13:00:00,CLARIFICATION_REQUESTED,E201,E303,Finance Department,Budget Check,Finance found one more missing supporting document and returned the file to PWD for correction before concurrence.
+EV1056,F5007,2025-02-18T10:00:00,CLARIFICATION_PROVIDED,E303,E201,Public Works Department,Budget Check,PWD supplied the additional document and corrected the file so Finance could continue the concurrence process.
+EV1057,F5008,2025-02-07T10:30:00,RECEIPT_DIARISED,E301,E301,Public Works Department,Receipt,PWD received the village road resurfacing – package a proposal and registered it in the file system.
+EV1058,F5008,2025-02-08T11:30:00,ASSIGNED,E301,E304,Public Works Department,Initial Review,"Section Officer assigned the file to E304 to examine the proposal, estimate, and supporting documents."
+EV1059,F5008,2025-02-10T12:30:00,NOTE_ADDED,E304,E304,Public Works Department,Technical Review,"Technical examination completed. Quantity, site details, estimate, and supporting documents were checked."
+EV1060,F5008,2025-02-12T13:30:00,FORWARDED,E304,E201,Public Works Department,Budget Check,PWD forwarded the file to Finance for budget availability and financial concurrence.
+EV1061,F5008,2025-02-15T15:30:00,CLARIFICATION_REQUESTED,E201,E304,Finance Department,Budget Check,Finance requested the latest administrative approval and supporting sanction documents before concurrence.
+EV1062,F5008,2025-02-17T12:30:00,CLARIFICATION_PROVIDED,E304,E201,Public Works Department,Budget Check,PWD attached the missing administrative approval and supporting sanction documents.
+EV1063,F5008,2025-02-20T14:30:00,FORWARDED,E201,E304,Finance Department,Financial Concurrence,Finance completed the budget review and returned the file to PWD with financial concurrence for further action.
+EV1064,F5008,2025-02-22T11:30:00,NOTE_ADDED,E304,E304,Public Works Department,Approval Preparation,PWD received the Finance concurrence and prepared the file for the next approval or sanction stage.
+EV1065,F5009,2025-02-12T09:20:00,RECEIPT_DIARISED,E301,E301,Public Works Department,Receipt,PWD received the government office compound wall repair proposal and registered it in the file system.
+EV1066,F5009,2025-02-13T10:20:00,ASSIGNED,E301,E306,Public Works Department,Initial Review,"Section Officer assigned the file to E306 to examine the proposal, estimate, and supporting documents."
+EV1067,F5009,2025-02-15T11:20:00,NOTE_ADDED,E306,E306,Public Works Department,Technical Review,"Technical examination completed. Quantity, site details, estimate, and supporting documents were checked."
+EV1068,F5009,2025-02-17T12:20:00,FORWARDED,E306,E201,Public Works Department,Budget Check,PWD forwarded the file to Finance for budget availability and financial concurrence.
+EV1069,F5009,2025-02-20T14:20:00,CLARIFICATION_REQUESTED,E201,E306,Finance Department,Budget Check,Finance requested a comparison with the previous year's expenditure to verify that the proposed amount is reasonable.
+EV1070,F5009,2025-02-22T11:20:00,CLARIFICATION_PROVIDED,E306,E201,Public Works Department,Budget Check,PWD attached the previous year's expenditure statement and explained the proposed increase.
+EV1071,F5009,2025-02-25T13:20:00,FORWARDED,E201,E306,Finance Department,Financial Concurrence,Finance completed the budget review and returned the file to PWD with financial concurrence for further action.
+EV1072,F5009,2025-02-27T10:20:00,NOTE_ADDED,E306,E306,Public Works Department,Approval Preparation,PWD received the Finance concurrence and prepared the file for the next approval or sanction stage.
+EV1073,F5010,2025-02-17T11:15:00,RECEIPT_DIARISED,E301,E301,Public Works Department,Receipt,PWD received the storm water drain desilting contract proposal and registered it in the file system.
+EV1074,F5010,2025-02-18T12:15:00,ASSIGNED,E301,E305,Public Works Department,Initial Review,"Section Officer assigned the file to E305 to examine the proposal, estimate, and supporting documents."
+EV1075,F5010,2025-02-20T13:15:00,NOTE_ADDED,E305,E305,Public Works Department,Technical Review,"Technical examination completed. Quantity, site details, estimate, and supporting documents were checked."
+EV1076,F5010,2025-02-22T14:15:00,FORWARDED,E305,E201,Public Works Department,Budget Check,PWD forwarded the file to Finance for budget availability and financial concurrence.
+EV1077,F5010,2025-02-25T16:15:00,CLARIFICATION_REQUESTED,E201,E305,Finance Department,Budget Check,Finance requested clarification on whether the work falls within the delegated financial approval limit.
+EV1078,F5010,2025-02-27T13:15:00,CLARIFICATION_PROVIDED,E305,E201,Public Works Department,Budget Check,PWD confirmed that the proposal requires higher-level approval and attached the required justification.
+EV1079,F5010,2025-03-02T15:15:00,CLARIFICATION_REQUESTED,E201,E305,Finance Department,Budget Check,Finance found one more missing supporting document and returned the file to PWD for correction before concurrence.
+EV1080,F5010,2025-03-04T12:15:00,CLARIFICATION_PROVIDED,E305,E201,Public Works Department,Budget Check,PWD supplied the additional document and corrected the file so Finance could continue the concurrence process.
+EV1081,F5011,2025-02-21T09:40:00,RECEIPT_DIARISED,E301,E301,Public Works Department,Receipt,PWD received the district road widening proposal proposal and registered it in the file system.
+EV1082,F5011,2025-02-22T10:40:00,ASSIGNED,E301,E302,Public Works Department,Initial Review,"Section Officer assigned the file to E302 to examine the proposal, estimate, and supporting documents."
+EV1083,F5011,2025-02-24T11:40:00,NOTE_ADDED,E302,E302,Public Works Department,Technical Review,"Technical examination completed. Quantity, site details, estimate, and supporting documents were checked."
+EV1084,F5011,2025-02-26T12:40:00,FORWARDED,E302,E201,Public Works Department,Budget Check,PWD forwarded the file to Finance for budget availability and financial concurrence.
+EV1085,F5011,2025-03-01T14:40:00,CLARIFICATION_REQUESTED,E201,E302,Finance Department,Budget Check,Finance requested the detailed rate analysis because the estimate did not show the basis for the proposed rates.
+EV1086,F5011,2025-03-03T11:40:00,CLARIFICATION_PROVIDED,E302,E201,Public Works Department,Budget Check,PWD attached the detailed rate analysis and updated the estimate with the supporting calculation.
+EV1087,F5011,2025-03-06T13:40:00,FORWARDED,E201,E302,Finance Department,Financial Concurrence,Finance completed the budget review and returned the file to PWD with financial concurrence for further action.
+EV1088,F5011,2025-03-08T10:40:00,NOTE_ADDED,E302,E302,Public Works Department,Approval Preparation,PWD received the Finance concurrence and prepared the file for the next approval or sanction stage.
+EV1089,F5012,2025-02-26T10:00:00,RECEIPT_DIARISED,E301,E301,Public Works Department,Receipt,PWD received the pwd workshop machinery replacement proposal and registered it in the file system.
+EV1090,F5012,2025-02-27T11:00:00,ASSIGNED,E301,E305,Public Works Department,Initial Review,"Section Officer assigned the file to E305 to examine the proposal, estimate, and supporting documents."
+EV1091,F5012,2025-03-01T12:00:00,NOTE_ADDED,E305,E305,Public Works Department,Technical Review,"Technical examination completed. Quantity, site details, estimate, and supporting documents were checked."
+EV1092,F5012,2025-03-03T13:00:00,FORWARDED,E305,E201,Public Works Department,Budget Check,PWD forwarded the file to Finance for budget availability and financial concurrence.
+EV1093,F5012,2025-03-06T15:00:00,CLARIFICATION_REQUESTED,E201,E305,Finance Department,Budget Check,Finance requested confirmation of the available budget head and the amount already spent under it.
+EV1094,F5012,2025-03-08T12:00:00,CLARIFICATION_PROVIDED,E305,E201,Public Works Department,Budget Check,PWD confirmed the budget head and attached the latest expenditure statement for verification.
+EV1095,F5012,2025-03-11T14:00:00,FORWARDED,E201,E305,Finance Department,Financial Concurrence,Finance completed the budget review and returned the file to PWD with financial concurrence for further action.
+EV1096,F5012,2025-03-13T11:00:00,NOTE_ADDED,E305,E305,Public Works Department,Approval Preparation,PWD received the Finance concurrence and prepared the file for the next approval or sanction stage.
+EV1097,F5013,2025-03-03T09:10:00,RECEIPT_DIARISED,E301,E301,Public Works Department,Receipt,PWD received the government quarters plumbing repairs proposal and registered it in the file system.
+EV1098,F5013,2025-03-04T10:10:00,ASSIGNED,E301,E304,Public Works Department,Initial Review,"Section Officer assigned the file to E304 to examine the proposal, estimate, and supporting documents."
+EV1099,F5013,2025-03-06T11:10:00,NOTE_ADDED,E304,E304,Public Works Department,Technical Review,"Technical examination completed. Quantity, site details, estimate, and supporting documents were checked."
+EV1100,F5013,2025-03-08T12:10:00,FORWARDED,E304,E201,Public Works Department,Budget Check,PWD forwarded the file to Finance for budget availability and financial concurrence.
+EV1101,F5013,2025-03-11T14:10:00,CLARIFICATION_REQUESTED,E201,E304,Finance Department,Budget Check,Finance requested the latest administrative approval and supporting sanction documents before concurrence.
+EV1102,F5013,2025-03-13T11:10:00,CLARIFICATION_PROVIDED,E304,E201,Public Works Department,Budget Check,PWD attached the missing administrative approval and supporting sanction documents.
+EV1103,F5013,2025-03-16T13:10:00,CLARIFICATION_REQUESTED,E201,E304,Finance Department,Budget Check,Finance found one more missing supporting document and returned the file to PWD for correction before concurrence.
+EV1104,F5013,2025-03-18T10:10:00,CLARIFICATION_PROVIDED,E304,E201,Public Works Department,Budget Check,PWD supplied the additional document and corrected the file so Finance could continue the concurrence process.
+EV1105,F5014,2025-03-07T10:20:00,RECEIPT_DIARISED,E301,E301,Public Works Department,Receipt,PWD received the minor bridge deck repair proposal and registered it in the file system.
+EV1106,F5014,2025-03-08T11:20:00,ASSIGNED,E301,E303,Public Works Department,Initial Review,"Section Officer assigned the file to E303 to examine the proposal, estimate, and supporting documents."
+EV1107,F5014,2025-03-10T12:20:00,NOTE_ADDED,E303,E303,Public Works Department,Technical Review,"Technical examination completed. Quantity, site details, estimate, and supporting documents were checked."
+EV1108,F5014,2025-03-12T13:20:00,FORWARDED,E303,E201,Public Works Department,Budget Check,PWD forwarded the file to Finance for budget availability and financial concurrence.
+EV1109,F5014,2025-03-15T15:20:00,CLARIFICATION_REQUESTED,E201,E303,Finance Department,Budget Check,Finance requested a comparison with the previous year's expenditure to verify that the proposed amount is reasonable.
+EV1110,F5014,2025-03-17T12:20:00,CLARIFICATION_PROVIDED,E303,E201,Public Works Department,Budget Check,PWD attached the previous year's expenditure statement and explained the proposed increase.
+EV1111,F5014,2025-03-20T14:20:00,FORWARDED,E201,E303,Finance Department,Financial Concurrence,Finance completed the budget review and returned the file to PWD with financial concurrence for further action.
+EV1112,F5014,2025-03-22T11:20:00,NOTE_ADDED,E303,E303,Public Works Department,Approval Preparation,PWD received the Finance concurrence and prepared the file for the next approval or sanction stage.
+EV1113,F5015,2025-03-11T09:30:00,RECEIPT_DIARISED,E301,E301,Public Works Department,Receipt,PWD received the canal service road strengthening proposal and registered it in the file system.
+EV1114,F5015,2025-03-12T10:30:00,ASSIGNED,E301,E302,Public Works Department,Initial Review,"Section Officer assigned the file to E302 to examine the proposal, estimate, and supporting documents."
+EV1115,F5015,2025-03-14T11:30:00,NOTE_ADDED,E302,E302,Public Works Department,Technical Review,"Technical examination completed. Quantity, site details, estimate, and supporting documents were checked."
+EV1116,F5015,2025-03-16T12:30:00,FORWARDED,E302,E201,Public Works Department,Budget Check,PWD forwarded the file to Finance for budget availability and financial concurrence.
+EV1117,F5015,2025-03-19T14:30:00,CLARIFICATION_REQUESTED,E201,E302,Finance Department,Budget Check,Finance requested clarification on whether the work falls within the delegated financial approval limit.
+EV1118,F5015,2025-03-21T11:30:00,CLARIFICATION_PROVIDED,E302,E201,Public Works Department,Budget Check,PWD confirmed that the proposal requires higher-level approval and attached the required justification.
+EV1119,F5015,2025-03-24T13:30:00,FORWARDED,E201,E302,Finance Department,Financial Concurrence,Finance completed the budget review and returned the file to PWD with financial concurrence for further action.
+EV1120,F5015,2025-03-26T10:30:00,NOTE_ADDED,E302,E302,Public Works Department,Approval Preparation,PWD received the Finance concurrence and prepared the file for the next approval or sanction stage.
+EV1121,F5016,2025-03-14T11:00:00,RECEIPT_DIARISED,E301,E301,Public Works Department,Receipt,PWD received the flood protection bund estimate proposal and registered it in the file system.
+EV1122,F5016,2025-03-15T12:00:00,ASSIGNED,E301,E305,Public Works Department,Initial Review,"Section Officer assigned the file to E305 to examine the proposal, estimate, and supporting documents."
+EV1123,F5016,2025-03-17T13:00:00,NOTE_ADDED,E305,E305,Public Works Department,Technical Review,"Technical examination completed. Quantity, site details, estimate, and supporting documents were checked."
+EV1124,F5016,2025-03-19T14:00:00,FORWARDED,E305,E201,Public Works Department,Budget Check,PWD forwarded the file to Finance for budget availability and financial concurrence.
+EV1125,F5016,2025-03-22T16:00:00,CLARIFICATION_REQUESTED,E201,E305,Finance Department,Budget Check,Finance requested the detailed rate analysis because the estimate did not show the basis for the proposed rates.
+EV1126,F5016,2025-03-24T13:00:00,CLARIFICATION_PROVIDED,E305,E201,Public Works Department,Budget Check,PWD attached the detailed rate analysis and updated the estimate with the supporting calculation.
+EV1127,F5016,2025-03-27T15:00:00,CLARIFICATION_REQUESTED,E201,E305,Finance Department,Budget Check,Finance found one more missing supporting document and returned the file to PWD for correction before concurrence.
+EV1128,F5016,2025-03-29T12:00:00,CLARIFICATION_PROVIDED,E305,E201,Public Works Department,Budget Check,PWD supplied the additional document and corrected the file so Finance could continue the concurrence process.
+EV1129,F5017,2025-03-18T09:45:00,RECEIPT_DIARISED,E301,E301,Public Works Department,Receipt,PWD received the district treasury building renovation proposal and registered it in the file system.
+EV1130,F5017,2025-03-19T10:45:00,ASSIGNED,E301,E304,Public Works Department,Initial Review,"Section Officer assigned the file to E304 to examine the proposal, estimate, and supporting documents."
+EV1131,F5017,2025-03-21T11:45:00,NOTE_ADDED,E304,E304,Public Works Department,Technical Review,"Technical examination completed. Quantity, site details, estimate, and supporting documents were checked."
+EV1132,F5017,2025-03-23T12:45:00,FORWARDED,E304,E201,Public Works Department,Budget Check,PWD forwarded the file to Finance for budget availability and financial concurrence.
+EV1133,F5017,2025-03-26T14:45:00,CLARIFICATION_REQUESTED,E201,E304,Finance Department,Budget Check,Finance requested confirmation of the available budget head and the amount already spent under it.
+EV1134,F5017,2025-03-28T11:45:00,CLARIFICATION_PROVIDED,E304,E201,Public Works Department,Budget Check,PWD confirmed the budget head and attached the latest expenditure statement for verification.
+EV1135,F5017,2025-03-31T13:45:00,FORWARDED,E201,E304,Finance Department,Financial Concurrence,Finance completed the budget review and returned the file to PWD with financial concurrence for further action.
+EV1136,F5017,2025-04-02T10:45:00,NOTE_ADDED,E304,E304,Public Works Department,Approval Preparation,PWD received the Finance concurrence and prepared the file for the next approval or sanction stage.
+EV1137,F5018,2025-03-21T10:10:00,RECEIPT_DIARISED,E301,E301,Public Works Department,Receipt,PWD received the rural road maintenance contract renewal proposal and registered it in the file system.
+EV1138,F5018,2025-03-22T11:10:00,ASSIGNED,E301,E306,Public Works Department,Initial Review,"Section Officer assigned the file to E306 to examine the proposal, estimate, and supporting documents."
+EV1139,F5018,2025-03-24T12:10:00,NOTE_ADDED,E306,E306,Public Works Department,Technical Review,"Technical examination completed. Quantity, site details, estimate, and supporting documents were checked."
+EV1140,F5018,2025-03-26T13:10:00,FORWARDED,E306,E201,Public Works Department,Budget Check,PWD forwarded the file to Finance for budget availability and financial concurrence.
+EV1141,F5018,2025-03-29T15:10:00,CLARIFICATION_REQUESTED,E201,E306,Finance Department,Budget Check,Finance requested the latest administrative approval and supporting sanction documents before concurrence.
+EV1142,F5018,2025-03-31T12:10:00,CLARIFICATION_PROVIDED,E306,E201,Public Works Department,Budget Check,PWD attached the missing administrative approval and supporting sanction documents.
+EV1143,F5018,2025-04-03T14:10:00,FORWARDED,E201,E306,Finance Department,Financial Concurrence,Finance completed the budget review and returned the file to PWD with financial concurrence for further action.
+EV1144,F5018,2025-04-05T11:10:00,NOTE_ADDED,E306,E306,Public Works Department,Approval Preparation,PWD received the Finance concurrence and prepared the file for the next approval or sanction stage.
+EV1145,F5019,2025-03-24T09:00:00,RECEIPT_DIARISED,E301,E301,Public Works Department,Receipt,PWD received the new bus shelter construction proposal and registered it in the file system.
+EV1146,F5019,2025-03-25T10:00:00,ASSIGNED,E301,E303,Public Works Department,Initial Review,"Section Officer assigned the file to E303 to examine the proposal, estimate, and supporting documents."
+EV1147,F5019,2025-03-27T11:00:00,NOTE_ADDED,E303,E303,Public Works Department,Technical Review,"Technical examination completed. Quantity, site details, estimate, and supporting documents were checked."
+EV1148,F5019,2025-03-29T12:00:00,FORWARDED,E303,E201,Public Works Department,Budget Check,PWD forwarded the file to Finance for budget availability and financial concurrence.
+EV1149,F5019,2025-04-01T14:00:00,CLARIFICATION_REQUESTED,E201,E303,Finance Department,Budget Check,Finance requested a comparison with the previous year's expenditure to verify that the proposed amount is reasonable.
+EV1150,F5019,2025-04-03T11:00:00,CLARIFICATION_PROVIDED,E303,E201,Public Works Department,Budget Check,PWD attached the previous year's expenditure statement and explained the proposed increase.
+EV1151,F5019,2025-04-06T13:00:00,CLARIFICATION_REQUESTED,E201,E303,Finance Department,Budget Check,Finance found one more missing supporting document and returned the file to PWD for correction before concurrence.
+EV1152,F5019,2025-04-08T10:00:00,CLARIFICATION_PROVIDED,E303,E201,Public Works Department,Budget Check,PWD supplied the additional document and corrected the file so Finance could continue the concurrence process.
+EV1153,F5020,2025-03-27T10:30:00,RECEIPT_DIARISED,E301,E301,Public Works Department,Receipt,PWD received the water tank rehabilitation works proposal and registered it in the file system.
+EV1154,F5020,2025-03-28T11:30:00,ASSIGNED,E301,E302,Public Works Department,Initial Review,"Section Officer assigned the file to E302 to examine the proposal, estimate, and supporting documents."
+EV1155,F5020,2025-03-30T12:30:00,NOTE_ADDED,E302,E302,Public Works Department,Technical Review,"Technical examination completed. Quantity, site details, estimate, and supporting documents were checked."
+EV1156,F5020,2025-04-01T13:30:00,FORWARDED,E302,E201,Public Works Department,Budget Check,PWD forwarded the file to Finance for budget availability and financial concurrence.
+EV1157,F5020,2025-04-04T15:30:00,CLARIFICATION_REQUESTED,E201,E302,Finance Department,Budget Check,Finance requested clarification on whether the work falls within the delegated financial approval limit.
+EV1158,F5020,2025-04-06T12:30:00,CLARIFICATION_PROVIDED,E302,E201,Public Works Department,Budget Check,PWD confirmed that the proposal requires higher-level approval and attached the required justification.
+EV1159,F5020,2025-04-09T14:30:00,FORWARDED,E201,E302,Finance Department,Financial Concurrence,Finance completed the budget review and returned the file to PWD with financial concurrence for further action.
+EV1160,F5020,2025-04-11T11:30:00,NOTE_ADDED,E302,E302,Public Works Department,Approval Preparation,PWD received the Finance concurrence and prepared the file for the next approval or sanction stage.
+EV1161,F5021,2025-03-31T09:15:00,RECEIPT_DIARISED,E301,E301,Public Works Department,Receipt,PWD received the pwd office server room civil works proposal and registered it in the file system.
+EV1162,F5021,2025-04-01T10:15:00,ASSIGNED,E301,E306,Public Works Department,Initial Review,"Section Officer assigned the file to E306 to examine the proposal, estimate, and supporting documents."
+EV1163,F5021,2025-04-03T11:15:00,NOTE_ADDED,E306,E306,Public Works Department,Technical Review,"Technical examination completed. Quantity, site details, estimate, and supporting documents were checked."
+EV1164,F5021,2025-04-05T12:15:00,FORWARDED,E306,E201,Public Works Department,Budget Check,PWD forwarded the file to Finance for budget availability and financial concurrence.
+EV1165,F5021,2025-04-08T14:15:00,CLARIFICATION_REQUESTED,E201,E306,Finance Department,Budget Check,Finance requested the detailed rate analysis because the estimate did not show the basis for the proposed rates.
+EV1166,F5021,2025-04-10T11:15:00,CLARIFICATION_PROVIDED,E306,E201,Public Works Department,Budget Check,PWD attached the detailed rate analysis and updated the estimate with the supporting calculation.
+EV1167,F5021,2025-04-13T13:15:00,FORWARDED,E201,E306,Finance Department,Financial Concurrence,Finance completed the budget review and returned the file to PWD with financial concurrence for further action.
+EV1168,F5021,2025-04-15T10:15:00,NOTE_ADDED,E306,E306,Public Works Department,Approval Preparation,PWD received the Finance concurrence and prepared the file for the next approval or sanction stage.
+EV1169,F5022,2025-04-03T10:00:00,RECEIPT_DIARISED,E301,E301,Public Works Department,Receipt,PWD received the road safety signage installation proposal and registered it in the file system.
+EV1170,F5022,2025-04-04T11:00:00,ASSIGNED,E301,E304,Public Works Department,Initial Review,"Section Officer assigned the file to E304 to examine the proposal, estimate, and supporting documents."
+EV1171,F5022,2025-04-06T12:00:00,NOTE_ADDED,E304,E304,Public Works Department,Technical Review,"Technical examination completed. Quantity, site details, estimate, and supporting documents were checked."
+EV1172,F5022,2025-04-08T13:00:00,FORWARDED,E304,E201,Public Works Department,Budget Check,PWD forwarded the file to Finance for budget availability and financial concurrence.
+EV1173,F5022,2025-04-11T15:00:00,CLARIFICATION_REQUESTED,E201,E304,Finance Department,Budget Check,Finance requested confirmation of the available budget head and the amount already spent under it.
+EV1174,F5022,2025-04-13T12:00:00,CLARIFICATION_PROVIDED,E304,E201,Public Works Department,Budget Check,PWD confirmed the budget head and attached the latest expenditure statement for verification.
+EV1175,F5022,2025-04-16T14:00:00,CLARIFICATION_REQUESTED,E201,E304,Finance Department,Budget Check,Finance found one more missing supporting document and returned the file to PWD for correction before concurrence.
+EV1176,F5022,2025-04-18T11:00:00,CLARIFICATION_PROVIDED,E304,E201,Public Works Department,Budget Check,PWD supplied the additional document and corrected the file so Finance could continue the concurrence process.
+EV1177,F5023,2025-04-07T09:30:00,RECEIPT_DIARISED,E301,E301,Public Works Department,Receipt,PWD received the small bridge approach slab repair proposal and registered it in the file system.
+EV1178,F5023,2025-04-08T10:30:00,ASSIGNED,E301,E303,Public Works Department,Initial Review,"Section Officer assigned the file to E303 to examine the proposal, estimate, and supporting documents."
+EV1179,F5023,2025-04-10T11:30:00,NOTE_ADDED,E303,E303,Public Works Department,Technical Review,"Technical examination completed. Quantity, site details, estimate, and supporting documents were checked."
+EV1180,F5023,2025-04-12T12:30:00,FORWARDED,E303,E201,Public Works Department,Budget Check,PWD forwarded the file to Finance for budget availability and financial concurrence.
+EV1181,F5023,2025-04-15T14:30:00,CLARIFICATION_REQUESTED,E201,E303,Finance Department,Budget Check,Finance requested the latest administrative approval and supporting sanction documents before concurrence.
+EV1182,F5023,2025-04-17T11:30:00,CLARIFICATION_PROVIDED,E303,E201,Public Works Department,Budget Check,PWD attached the missing administrative approval and supporting sanction documents.
+EV1183,F5023,2025-04-20T13:30:00,FORWARDED,E201,E303,Finance Department,Financial Concurrence,Finance completed the budget review and returned the file to PWD with financial concurrence for further action.
+EV1184,F5023,2025-04-22T10:30:00,NOTE_ADDED,E303,E303,Public Works Department,Approval Preparation,PWD received the Finance concurrence and prepared the file for the next approval or sanction stage.
+EV1185,F5024,2025-04-10T11:00:00,RECEIPT_DIARISED,E301,E301,Public Works Department,Receipt,PWD received the monsoon emergency drainage works proposal and registered it in the file system.
+EV1186,F5024,2025-04-11T12:00:00,ASSIGNED,E301,E305,Public Works Department,Initial Review,"Section Officer assigned the file to E305 to examine the proposal, estimate, and supporting documents."
+EV1187,F5024,2025-04-13T13:00:00,NOTE_ADDED,E305,E305,Public Works Department,Technical Review,"Technical examination completed. Quantity, site details, estimate, and supporting documents were checked."
+EV1188,F5024,2025-04-15T14:00:00,FORWARDED,E305,E201,Public Works Department,Budget Check,PWD forwarded the file to Finance for budget availability and financial concurrence.
+EV1189,F5024,2025-04-18T16:00:00,CLARIFICATION_REQUESTED,E201,E305,Finance Department,Budget Check,Finance requested a comparison with the previous year's expenditure to verify that the proposed amount is reasonable.
+EV1190,F5024,2025-04-20T13:00:00,CLARIFICATION_PROVIDED,E305,E201,Public Works Department,Budget Check,PWD attached the previous year's expenditure statement and explained the proposed increase.
+EV1191,F5024,2025-04-23T15:00:00,FORWARDED,E201,E305,Finance Department,Financial Concurrence,Finance completed the budget review and returned the file to PWD with financial concurrence for further action.
+EV1192,F5024,2025-04-25T12:00:00,NOTE_ADDED,E305,E305,Public Works Department,Approval Preparation,PWD received the Finance concurrence and prepared the file for the next approval or sanction stage.
+EV1193,F5025,2025-04-14T09:45:00,RECEIPT_DIARISED,E301,E301,Public Works Department,Receipt,PWD received the district stadium boundary wall repair proposal and registered it in the file system.
+EV1194,F5025,2025-04-15T10:45:00,ASSIGNED,E301,E304,Public Works Department,Initial Review,"Section Officer assigned the file to E304 to examine the proposal, estimate, and supporting documents."
+EV1195,F5025,2025-04-17T11:45:00,NOTE_ADDED,E304,E304,Public Works Department,Technical Review,"Technical examination completed. Quantity, site details, estimate, and supporting documents were checked."
+EV1196,F5025,2025-04-19T12:45:00,FORWARDED,E304,E201,Public Works Department,Budget Check,PWD forwarded the file to Finance for budget availability and financial concurrence.
+EV1197,F5025,2025-04-22T14:45:00,CLARIFICATION_REQUESTED,E201,E304,Finance Department,Budget Check,Finance requested clarification on whether the work falls within the delegated financial approval limit.
+EV1198,F5025,2025-04-24T11:45:00,CLARIFICATION_PROVIDED,E304,E201,Public Works Department,Budget Check,PWD confirmed that the proposal requires higher-level approval and attached the required justification.
+EV1199,F5025,2025-04-27T13:45:00,CLARIFICATION_REQUESTED,E201,E304,Finance Department,Budget Check,Finance found one more missing supporting document and returned the file to PWD for correction before concurrence.
+EV1200,F5025,2025-04-29T10:45:00,CLARIFICATION_PROVIDED,E304,E201,Public Works Department,Budget Check,PWD supplied the additional document and corrected the file so Finance could continue the concurrence process.
