@@ -22,15 +22,16 @@
 | app/core/risk_scorer.py | Done — 3/3 tests passing |
 | app/core/alert_consolidator.py | Done — 6/6 tests passing |
 | app/core/orchestrator.py | Done — full pipeline with insight cache (no repeat Ollama calls on restart) |
-| app/api/routes.py | **Placeholder only** — mock `GET /api/ping`, real endpoints missing |
+| app/api/routes.py | Partial — `GET /api/dashboard/summary` implemented from consolidated alert data; remaining endpoints pending |
 | tests/test_stuck_detector.py | Done — 4 tests |
 | tests/test_loop_detector.py | Done — 3 tests |
 | tests/test_conformance_detector.py | Done — 3 tests |
 | tests/test_risk_scorer.py | Done — 3 tests |
 | tests/test_alert_consolidator.py | Done — 6 tests |
+| tests/test_dashboard_summary.py | Done — consolidated KPI and active/overdue counts |
 | tests/test_validation.py | Missing — end-to-end pipeline test |
 
-**Tests: 19/19 passing**
+**Tests: 20/20 passing**
 
 ### Data (src/backend/data/)
 
