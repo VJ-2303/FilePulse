@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:8000/api';
+const BASE_URL = '/api';
 
 export async function fetchSummary() {
   const res = await fetch(`${BASE_URL}/dashboard/summary`);

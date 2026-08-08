@@ -6,6 +6,8 @@
 
 ## Completed
 
+- [x] 2026-08-08 18:06 +05:30 Restored frontend API client to use the Vite proxy and verified the file detail page loads through the local backend - checked by browser render and backend `200` responses
+
 - [x] 2026-08-08 18:43 +05:30 Completed documented API endpoints in `app/api/routes.py` and documented 4xx error envelope in `main.py` - verified by `python -m pytest tests` from `src/backend` (25 passed)
 
 ---
