@@ -1,3 +1,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-700 antialiased font-sans;
+  }
+}
+
+/* ReactFlow Custom Node Styles */
+.react-flow__node {
+  @apply rounded-xl border border-slate-200 bg-white shadow-sm transition-all;
+}
+
+.react-flow__node:hover {
+  @apply shadow-md border-sky-300;
+}
+
+.react-flow__node.highlight {
+  @apply border-sky-500 shadow-md ring-4 ring-sky-50;
+}
+
+.react-flow__node.stuck {
+  @apply border-rose-500 shadow-md ring-4 ring-rose-50;
+}
+
+.react-flow__edge-path {
+  @apply stroke-slate-300;
+}
+
+.react-flow__edge.highlight .react-flow__edge-path {
+  @apply stroke-sky-500;
+  stroke-width: 3;
+}

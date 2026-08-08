@@ -76,4 +76,4 @@ src
 ```
 
 ## 9. SCOPE GUARD (Instant Reject List)
-Auth/login • real e-Office API integration • Docker/CI/CD • PM4Py • citizen portal • chatbot page • auto-reassignment execution • mobile app • PDF export • email/SMS alerts • any DB other than SQLite • >3 frontend routes.
+Auth/login • real e-Office API integration • Docker/CI/CD • PM4Py • citizen portal • chatbot page • auto-reassignment execution • mobile app • PDF export • email/SMS alerts • any DB other than SQLite
