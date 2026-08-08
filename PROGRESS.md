@@ -4,6 +4,12 @@
 
 ---
 
+## Completed
+
+- [x] 2026-08-08 18:43 +05:30 Completed documented API endpoints in `app/api/routes.py` and documented 4xx error envelope in `main.py` - verified by `python -m pytest tests` from `src/backend` (25 passed)
+
+---
+
 ## Codebase State
 
 ### Backend (src/backend/)
@@ -22,16 +28,17 @@
 | app/core/risk_scorer.py | Done — 3/3 tests passing |
 | app/core/alert_consolidator.py | Done — 6/6 tests passing |
 | app/core/orchestrator.py | Done — full pipeline with insight cache (no repeat Ollama calls on restart) |
-| app/api/routes.py | Partial — `GET /api/dashboard/summary` implemented from consolidated alert data; remaining endpoints pending |
+| app/api/routes.py | Done — dashboard summary, alerts, file journey, employee workload, org tree, AI insight regeneration |
 | tests/test_stuck_detector.py | Done — 4 tests |
 | tests/test_loop_detector.py | Done — 3 tests |
 | tests/test_conformance_detector.py | Done — 3 tests |
 | tests/test_risk_scorer.py | Done — 3 tests |
 | tests/test_alert_consolidator.py | Done — 6 tests |
 | tests/test_dashboard_summary.py | Done — consolidated KPI and active/overdue counts |
+| tests/test_api_routes.py | Done — alerts, journey, workload, org tree, invalid filter coverage |
 | tests/test_validation.py | Missing — end-to-end pipeline test |
 
-**Tests: 20/20 passing**
+**Tests: 25/25 passing**
 
 ### Data (src/backend/data/)
 
@@ -89,14 +96,6 @@ All 7 insights are `source="ollama"`. Restart caching is live — subsequent boo
 
 ## Next Up
 
-1. **`app/api/routes.py`** — replace placeholder with all 6 real endpoints (SPECS.md §8):
-   - `GET /api/dashboard/summary`
-   - `GET /api/alerts?type=all|rotting|looping|conformance`
-   - `GET /api/files/{file_id}/journey`
-   - `GET /api/employees/{employee_id}/workload`
-   - `GET /api/org/tree`
-   - `POST /api/alerts/{alert_id}/ai-insight`
+1. **`tests/test_validation.py`** — end-to-end: run pipeline, assert all 11 alerts present with correct scores
 
-2. **`tests/test_validation.py`** — end-to-end: run pipeline, assert all 11 alerts present with correct scores
-
-3. **Frontend** — `api/client.js`, `DashboardPage` (Red List), `FileDetailPage` (ReactFlow journey), `WorkloadPage`
+2. **Frontend** — `api/client.js`, `DashboardPage` (Red List), `FileDetailPage` (ReactFlow journey), `WorkloadPage`
