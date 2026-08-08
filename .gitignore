@@ -9,3 +9,4 @@ __pycache__/
 .venv/
 *.sqlite3
 .pytest_cache
+.aider*
