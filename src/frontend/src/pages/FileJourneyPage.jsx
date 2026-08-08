@@ -5,6 +5,27 @@ import { Badge } from '../components/ui';
 import { ArrowLeft, ChevronLeft, ChevronRight, Clock, Activity, User } from 'lucide-react';
 import { cn } from '../utils/classNames';
 
+const customStyles = `
+  @keyframes transfer-x {
+    0% { left: 0%; transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+    15% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    85% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    100% { left: 100%; transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+  }
+  @keyframes transfer-y {
+    0% { top: 0%; transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+    15% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    85% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    100% { top: 100%; transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+  }
+  .animate-transfer-desktop {
+    animation: transfer-x 2.5s infinite ease-in-out;
+  }
+  .animate-transfer-mobile {
+    animation: transfer-y 2.5s infinite ease-in-out;
+  }
+`;
+
 export default function FileJourneyPage() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -51,6 +72,7 @@ export default function FileJourneyPage() {
 
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12 h-[calc(100vh-100px)] flex flex-col">
+      <style>{customStyles}</style>
       {/* Header Section */}
       <div className="flex items-center justify-between gap-4 bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-800 shrink-0">
         <div className="flex items-center gap-4">
@@ -121,7 +143,7 @@ export default function FileJourneyPage() {
                 </div>
                 <div className="text-center">
                   <div className="text-white font-bold text-lg lg:text-xl">{currentEvent.from_user_name}</div>
-                  <div className="text-slate-400 text-sm">{currentEvent.is_transfer ? 'Sender' : 'Actor'}</div>
+                  <div className="text-slate-300 text-base font-semibold">{currentEvent.is_transfer ? 'Sender' : 'Actor'}</div>
                 </div>
               </div>
               
@@ -131,7 +153,16 @@ export default function FileJourneyPage() {
                   <div className="w-1 h-24 lg:w-full lg:h-1 bg-slate-700 rounded-full relative overflow-hidden">
                     <div className="absolute inset-x-0 top-0 lg:inset-y-0 lg:left-0 bg-sky-500 h-full lg:h-auto lg:w-full" style={{ opacity: 0.8 }} />
                   </div>
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-900 border-2 border-sky-500 text-sky-400 px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest shadow-[0_0_20px_rgba(14,165,233,0.4)] whitespace-nowrap">
+                  
+                  {/* Traveling Document Emoji */}
+                  <div className="hidden lg:flex absolute top-1/2 left-0 animate-transfer-desktop text-2xl z-0 pointer-events-none">
+                    📄
+                  </div>
+                  <div className="lg:hidden absolute top-0 left-1/2 animate-transfer-mobile text-2xl z-0 pointer-events-none">
+                    📄
+                  </div>
+
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-900 border-2 border-sky-500 text-sky-400 px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest shadow-[0_0_20px_rgba(14,165,233,0.4)] whitespace-nowrap z-10">
                     {currentEvent.action}
                   </div>
                 </div>
@@ -145,7 +176,7 @@ export default function FileJourneyPage() {
                   </div>
                   <div className="text-center">
                     <div className="text-white font-bold text-lg lg:text-xl">{currentEvent.to_user_name}</div>
-                    <div className="text-sky-400/80 text-sm font-medium">Receiver</div>
+                    <div className="text-sky-300 text-base font-semibold">Receiver</div>
                   </div>
                 </div>
               )}
