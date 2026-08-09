@@ -1,4 +1,10 @@
-export function generateTreeLayout(apiTree, nodeWidth = 430, nodeHeight = 176, dx = 540, dy = 210) {
+export function generateTreeLayout(
+  apiTree,
+  nodeWidth = 430,
+  nodeHeight = 176,
+  dx = 540,
+  dy = 210,
+) {
   const nodes = [];
   const edges = [];
 
@@ -16,7 +22,7 @@ export function generateTreeLayout(apiTree, nodeWidth = 430, nodeHeight = 176, d
       id: node.employee_id,
       data: { ...node, label: node.name },
       position: { x, y: y - nodeHeight / 2 },
-      type: 'orgNode',
+      type: "orgNode",
     });
 
     if (node.children && node.children.length > 0) {
@@ -32,15 +38,16 @@ export function generateTreeLayout(apiTree, nodeWidth = 430, nodeHeight = 176, d
           id: `${node.employee_id}-${child.employee_id}`,
           source: node.employee_id,
           target: child.employee_id,
-          type: 'smoothstep',
+          type: "smoothstep",
           animated: false,
-          style: { stroke: '#64748b', strokeWidth: 3 }
+          style: { stroke: "#64748b", strokeWidth: 3 },
         });
 
         currentY += childH;
       }
     }
   }
+  // hello
 
   let totalRootHeight = 0;
   for (const root of apiTree) {
