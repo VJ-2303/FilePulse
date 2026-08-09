@@ -29,3 +29,13 @@ export async function fetchEmployeeWorkload(employeeId) {
   if (!res.ok) throw new Error('Failed to fetch employee workload');
   return res.json();
 }
+
+export async function fetchAssistantResponse(message) {
+  const res = await fetch(`${BASE_URL}/assistant/chat`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message }),
+  });
+  if (!res.ok) throw new Error('Failed to get assistant response');
+  return res.json();
+}

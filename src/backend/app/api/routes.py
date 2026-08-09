@@ -3,13 +3,17 @@ from collections import Counter
 from collections.abc import Generator
 from datetime import datetime
 
+import httpx
 from fastapi import APIRouter, Depends, HTTPException, Query
+from pydantic import BaseModel
 
 from app.AI.ollama_service import generate_insight
+from app.ai.assistant import build_context, classify_intent
+from app.ai.assistant_prompts import SYSTEM_PROMPT, build_prompt
 from app.core.alert_consolidator import consolidate_alerts
 from app.db import get_connection, insert_ai_insights
 from app.models import AiInsight, Alert, Employee, Event, FileRecord
-from config import REFERENCE_NOW
+from config import OLLAMA_BASE_URL, OLLAMA_MODEL, REFERENCE_NOW
 
 
 router = APIRouter()
@@ -64,6 +68,47 @@ async def regenerate_ai_insight(
     conn: sqlite3.Connection = Depends(get_conn),
 ) -> dict:
     return await regenerate_alert_insight(conn, alert_id)
+
+
+class AssistantRequest(BaseModel):
+    message: str
+
+
+@router.post("/api/assistant/chat")
+async def assistant_chat(
+    body: AssistantRequest,
+    conn: sqlite3.Connection = Depends(get_conn),
+) -> dict:
+    """AI assistant endpoint: classify intent, build context, call Ollama."""
+    message = body.message.strip()
+    if not message:
+        raise HTTPException(status_code=400, detail="Message cannot be empty")
+
+    intent, entities = classify_intent(message)
+    context = build_context(conn, intent, entities)
+    prompt = build_prompt(context, message)
+
+    try:
+        async with httpx.AsyncClient(timeout=30) as client:
+            response = await client.post(
+                f"{OLLAMA_BASE_URL}/api/generate",
+                json={
+                    "model": OLLAMA_MODEL,
+                    "system": SYSTEM_PROMPT,
+                    "prompt": prompt,
+                    "options": {"temperature": 0},
+                    "stream": False,
+                },
+            )
+            response.raise_for_status()
+            reply = response.json().get("response", "").strip()
+    except Exception:
+        reply = (
+            "I'm having trouble connecting to the AI engine right now. "
+            "Please try again in a moment."
+        )
+
+    return {"reply": reply, "intent": intent, "sources": entities}
 
 
 def build_dashboard_summary(conn: sqlite3.Connection) -> dict[str, int | str]:

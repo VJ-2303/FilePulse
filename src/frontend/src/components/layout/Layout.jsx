@@ -1,4 +1,5 @@
 import { Sidebar } from "./Sidebar";
+import AssistantPanel from "../AssistantPanel";
 
 export function Layout({ children }) {
   return (
@@ -9,6 +10,8 @@ export function Layout({ children }) {
           {children}
         </div>
       </main>
+      <AssistantPanel />
     </div>
   );
 }
+

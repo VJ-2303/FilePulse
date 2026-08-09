@@ -1,9 +1,19 @@
-import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { fetchFileJourney } from '../api/client';
-import { Card, Badge } from '../components/ui';
-import { ArrowLeft, Clock, FileText, Lightbulb, Activity, Calendar, User, ArrowRight, Map } from 'lucide-react';
-import { cn } from '../utils/classNames';
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { fetchFileJourney } from "../api/client";
+import { Card, Badge } from "../components/ui";
+import {
+  ArrowLeft,
+  Clock,
+  FileText,
+  Lightbulb,
+  Activity,
+  Calendar,
+  User,
+  ArrowRight,
+  Map,
+} from "lucide-react";
+import { cn } from "../utils/classNames";
 
 export default function FileDetailPage() {
   const { id } = useParams();
@@ -26,8 +36,14 @@ export default function FileDetailPage() {
     loadData();
   }, [id]);
 
-  if (loading) return <div className="p-8 text-slate-500">Loading file information...</div>;
-  if (!data) return <div className="p-8 text-rose-500">Failed to load file information.</div>;
+  if (loading)
+    return (
+      <div className="p-8 text-slate-500">Loading file information...</div>
+    );
+  if (!data)
+    return (
+      <div className="p-8 text-rose-500">Failed to load file information.</div>
+    );
 
   const { file, events, ai_insight } = data;
 
@@ -44,15 +60,42 @@ export default function FileDetailPage() {
           </button>
           <div>
             <div className="flex items-center gap-3 flex-wrap mb-1">
-              <h1 className="text-2xl font-black text-slate-900 tracking-tight">{file.title}</h1>
-              <Badge variant="info" className="text-xs uppercase tracking-widest px-2">{file.file_id}</Badge>
-              <Badge variant={file.priority === 'High' ? 'danger' : 'default'} className="text-xs uppercase px-2">{file.priority} Priority</Badge>
-              {file.is_overdue && <Badge variant="danger" className="text-xs uppercase px-2">Overdue</Badge>}
+              <h1 className="text-2xl font-black text-slate-900 tracking-tight">
+                {file.title}
+              </h1>
+              <Badge
+                variant="info"
+                className="text-xs uppercase tracking-widest px-2"
+              >
+                {file.file_id}
+              </Badge>
+              <Badge
+                variant={file.priority === "High" ? "danger" : "default"}
+                className="text-xs uppercase px-2"
+              >
+                {file.priority} Priority
+              </Badge>
+              {file.is_overdue && (
+                <Badge variant="danger" className="text-xs uppercase px-2">
+                  Overdue
+                </Badge>
+              )}
             </div>
             <div className="flex items-center gap-4 text-sm text-slate-500 font-medium">
-              <span className="flex items-center gap-1.5"><FileText className="w-4 h-4" /> {file.file_type}</span>
-              <span className="flex items-center gap-1.5"><User className="w-4 h-4" /> Currently with: <span className="text-slate-800 font-bold">{file.current_holder_name}</span></span>
-              {file.days_inactive > 0 && <span className="flex items-center gap-1.5 text-orange-600 bg-orange-50 px-2 py-0.5 rounded-md"><Clock className="w-4 h-4" /> {file.days_inactive} days stuck</span>}
+              <span className="flex items-center gap-1.5">
+                <FileText className="w-4 h-4" /> {file.file_type}
+              </span>
+              <span className="flex items-center gap-1.5">
+                <User className="w-4 h-4" /> Currently with:{" "}
+                <span className="text-slate-800 font-bold">
+                  {file.current_holder_name}
+                </span>
+              </span>
+              {file.days_inactive > 0 && (
+                <span className="flex items-center gap-1.5 text-orange-600 bg-orange-50 px-2 py-0.5 rounded-md">
+                  <Clock className="w-4 h-4" /> {file.days_inactive} days stuck
+                </span>
+              )}
             </div>
           </div>
         </div>
@@ -71,7 +114,6 @@ export default function FileDetailPage() {
 
       {/* Content: DETAILS */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 animate-in slide-in-from-left-4 duration-300">
-
         <div className="lg:col-span-2 space-y-6">
           <Card className="border-0 shadow-[0_4px_20px_rgb(0,0,0,0.03)] bg-white/50">
             <h2 className="text-xl font-black text-slate-900 mb-8 flex items-center gap-3 border-b border-slate-200/60 pb-4">
@@ -86,15 +128,22 @@ export default function FileDetailPage() {
 
                   {/* Content Container */}
                   <div className="bg-white rounded-2xl p-6 border border-slate-200/60 shadow-sm hover:shadow-md transition-shadow">
-
                     {/* Timestamp & Phase */}
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5 pb-4 border-b border-slate-50">
                       <div className="flex items-center gap-2">
-                        <Badge variant="default" className="bg-slate-100 text-slate-600 border-transparent shadow-none px-3 py-1">{evt.stage} Phase</Badge>
+                        <Badge
+                          variant="default"
+                          className="bg-slate-100 text-slate-600 border-transparent shadow-none px-3 py-1"
+                        >
+                          {evt.stage} Phase
+                        </Badge>
                       </div>
                       <div className="text-[13px] font-bold text-slate-400 flex items-center gap-1.5">
                         <Clock className="w-4 h-4" />
-                        {new Date(evt.timestamp).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' })}
+                        {new Date(evt.timestamp).toLocaleString(undefined, {
+                          dateStyle: "medium",
+                          timeStyle: "short",
+                        })}
                       </div>
                     </div>
 
@@ -108,8 +157,12 @@ export default function FileDetailPage() {
                               <User className="w-5 h-5 text-slate-400" />
                             </div>
                             <div className="min-w-0">
-                              <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-0.5">From</div>
-                              <div className="font-bold text-slate-900 truncate">{evt.from_user_name}</div>
+                              <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-0.5">
+                                From
+                              </div>
+                              <div className="font-bold text-slate-900 truncate">
+                                {evt.from_user_name}
+                              </div>
                             </div>
                           </div>
 
@@ -127,8 +180,12 @@ export default function FileDetailPage() {
                           {/* Receiver */}
                           <div className="flex items-center gap-3 flex-1 sm:justify-end text-left sm:text-right">
                             <div className="min-w-0 order-2 sm:order-1">
-                              <div className="text-[10px] font-black text-sky-400 uppercase tracking-widest mb-0.5">To</div>
-                              <div className="font-bold text-sky-700 truncate">{evt.to_user_name}</div>
+                              <div className="text-[10px] font-black text-sky-400 uppercase tracking-widest mb-0.5">
+                                To
+                              </div>
+                              <div className="font-bold text-sky-700 truncate">
+                                {evt.to_user_name}
+                              </div>
                             </div>
                             <div className="w-10 h-10 rounded-full bg-sky-50 border border-sky-200 flex items-center justify-center shadow-sm shrink-0 order-1 sm:order-2">
                               <User className="w-5 h-5 text-sky-500" />
@@ -141,8 +198,12 @@ export default function FileDetailPage() {
                             <User className="w-5 h-5 text-slate-400" />
                           </div>
                           <div>
-                            <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-0.5">Action by: {evt.from_user_name}</div>
-                            <div className="font-black text-slate-800 text-lg">{evt.action}</div>
+                            <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-0.5">
+                              Action by: {evt.from_user_name}
+                            </div>
+                            <div className="font-black text-slate-800 text-lg">
+                              {evt.action}
+                            </div>
                           </div>
                         </div>
                       )}
@@ -152,7 +213,9 @@ export default function FileDetailPage() {
                     {evt.note_text && (
                       <div className="mt-4 bg-amber-50/40 border border-amber-100/50 p-4 rounded-xl relative">
                         <div className="flex gap-3">
-                          <div className="text-amber-300 font-serif text-4xl leading-none mt-1">"</div>
+                          <div className="text-amber-300 font-serif text-4xl leading-none mt-1">
+                            "
+                          </div>
                           <p className="text-slate-700 font-medium leading-relaxed text-[14px]">
                             {evt.note_text}
                           </p>
@@ -168,11 +231,15 @@ export default function FileDetailPage() {
 
         <div className="space-y-6">
           <Card>
-            <h3 className="font-bold text-slate-900 mb-3 border-b border-slate-100 pb-2">File Metadata</h3>
+            <h3 className="font-bold text-slate-900 mb-3 border-b border-slate-100 pb-2">
+              File Metadata
+            </h3>
             <div className="space-y-3 text-sm">
               <div className="flex justify-between">
                 <span className="text-slate-500">Created At</span>
-                <span className="font-semibold text-slate-800">{new Date(file.created_at).toLocaleDateString()}</span>
+                <span className="font-semibold text-slate-800">
+                  {new Date(file.created_at).toLocaleDateString()}
+                </span>
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-500">Deadline</span>
@@ -183,7 +250,14 @@ export default function FileDetailPage() {
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-500">Days to Deadline</span>
-                <span className={cn("font-bold", file.days_to_deadline < 0 ? "text-rose-600" : "text-emerald-600")}>
+                <span
+                  className={cn(
+                    "font-bold",
+                    file.days_to_deadline < 0
+                      ? "text-rose-600"
+                      : "text-emerald-600",
+                  )}
+                >
                   {file.days_to_deadline} days
                 </span>
               </div>
@@ -198,22 +272,32 @@ export default function FileDetailPage() {
                   <Lightbulb className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-sky-900 mb-2">AI Diagnostic Insight</h3>
+                  <h3 className="font-bold text-sky-900 mb-2">
+                    AI Diagnostic Insight
+                  </h3>
                   <p className="text-sm text-slate-700 leading-relaxed mb-4">
                     {ai_insight.plain_language_summary}
                   </p>
 
                   {ai_insight.likely_blocker && (
                     <div className="mb-3 bg-white p-2.5 rounded-lg border border-sky-100">
-                      <h4 className="text-xs font-black text-sky-800 uppercase tracking-widest mb-1">Likely Blocker</h4>
-                      <p className="text-sm text-slate-700">{ai_insight.likely_blocker}</p>
+                      <h4 className="text-xs font-black text-sky-800 uppercase tracking-widest mb-1">
+                        Likely Blocker
+                      </h4>
+                      <p className="text-sm text-slate-700">
+                        {ai_insight.likely_blocker}
+                      </p>
                     </div>
                   )}
 
                   {ai_insight.recommended_action && (
                     <div className="bg-emerald-50 p-2.5 rounded-lg border border-emerald-100">
-                      <h4 className="text-xs font-black text-emerald-700 uppercase tracking-widest mb-1">Recommended Action</h4>
-                      <p className="text-sm text-emerald-900 font-medium">{ai_insight.recommended_action}</p>
+                      <h4 className="text-xs font-black text-emerald-700 uppercase tracking-widest mb-1">
+                        Recommended Action
+                      </h4>
+                      <p className="text-sm text-emerald-900 font-medium">
+                        {ai_insight.recommended_action}
+                      </p>
                     </div>
                   )}
                 </div>
