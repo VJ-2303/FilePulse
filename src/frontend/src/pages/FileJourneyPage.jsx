@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { fetchFileJourney } from '../api/client';
 import { Badge } from '../components/ui';
-import { ArrowLeft, ChevronLeft, ChevronRight, Clock, Activity, User } from 'lucide-react';
+import { ArrowLeft, ChevronLeft, ChevronRight, Clock, Activity, User, FileText } from 'lucide-react';
 import { cn } from '../utils/classNames';
 
 const customStyles = `
@@ -197,14 +197,14 @@ export default function FileJourneyPage() {
                     <div className="absolute inset-x-0 top-0 lg:inset-y-0 lg:left-0 bg-sky-500 h-full lg:h-auto lg:w-full" style={{ opacity: 0.8 }} />
                   </div>
 
-                  {/* Traveling Document Emoji */}
-                  <div className={cn("hidden lg:flex absolute top-1/2 left-0 text-2xl z-0 pointer-events-none items-center gap-1", transferDirection === 'rtl' ? 'animate-transfer-desktop-rtl flex-row-reverse' : 'animate-transfer-desktop')}>
-                    📄
-                    <div className="text-sky-400">{transferDirection === 'rtl' ? '←' : '→'}</div>
+                  {/* Traveling Document Icon */}
+                  <div className={cn("hidden lg:flex absolute top-1/2 left-0 z-0 pointer-events-none items-center gap-1.5", transferDirection === 'rtl' ? 'animate-transfer-desktop-rtl flex-row-reverse' : 'animate-transfer-desktop')}>
+                    <FileText className="w-6 h-6 text-slate-300 drop-shadow-md" />
+                    <div className="text-sky-400 font-bold">{transferDirection === 'rtl' ? '←' : '→'}</div>
                   </div>
-                  <div className={cn("lg:hidden absolute top-0 left-1/2 text-2xl z-0 pointer-events-none flex flex-col items-center gap-1", transferDirection === 'rtl' ? 'animate-transfer-mobile-rtl flex-col-reverse' : 'animate-transfer-mobile')}>
-                    📄
-                    <div className="text-sky-400 -rotate-90">{transferDirection === 'rtl' ? '←' : '→'}</div>
+                  <div className={cn("lg:hidden absolute top-0 left-1/2 z-0 pointer-events-none flex flex-col items-center gap-1.5", transferDirection === 'rtl' ? 'animate-transfer-mobile-rtl flex-col-reverse' : 'animate-transfer-mobile')}>
+                    <FileText className="w-6 h-6 text-slate-300 drop-shadow-md" />
+                    <div className="text-sky-400 font-bold -rotate-90">{transferDirection === 'rtl' ? '←' : '→'}</div>
                   </div>
 
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-900 border-2 border-sky-500 text-sky-400 px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest shadow-[0_0_20px_rgba(14,165,233,0.4)] whitespace-nowrap z-10">

@@ -53,8 +53,8 @@ export default function EmployeeDetailPage() {
         </button>
         <div className="flex-1 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="flex items-center gap-5">
-            <div className="w-20 h-20 bg-sky-100 rounded-full flex items-center justify-center border-4 border-white shadow-md shrink-0">
-              <User className="w-10 h-10 text-sky-600" />
+            <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center border-4 border-white shadow-md shrink-0">
+              <User className="w-10 h-10 text-slate-500" />
             </div>
             <div>
               <h1 className="text-3xl font-black text-slate-900 tracking-tight">{emp.name}</h1>
@@ -72,7 +72,7 @@ export default function EmployeeDetailPage() {
             <h3 className="text-slate-400 font-bold tracking-widest text-xs uppercase mb-6">Workload Overview</h3>
             <div className="space-y-6">
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3 text-sky-400">
+                <div className="flex items-center gap-3 text-slate-400">
                   <Briefcase className="w-5 h-5" />
                   <span className="font-semibold text-slate-200">Active Files</span>
                 </div>
@@ -82,7 +82,7 @@ export default function EmployeeDetailPage() {
               <div className="w-full h-px bg-slate-700/50" />
 
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3 text-rose-400">
+                <div className="flex items-center gap-3 text-slate-400">
                   <AlertTriangle className="w-5 h-5" />
                   <span className="font-semibold text-slate-200">Alerted Files</span>
                 </div>
@@ -96,7 +96,7 @@ export default function EmployeeDetailPage() {
         <div className="lg:col-span-2 space-y-6">
           <Card className="p-8">
             <h2 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-3 border-b border-slate-100 pb-4">
-              <CheckCircle className="w-6 h-6 text-emerald-500" />
+              <CheckCircle className="w-6 h-6 text-slate-500" />
               Currently Assigned Files
             </h2>
 
@@ -131,7 +131,7 @@ export default function EmployeeDetailPage() {
                       )}
 
                       {file.days_inactive !== null && file.days_inactive > 0 && (
-                        <div className="flex items-center gap-1.5 text-xs font-bold px-3 py-1 bg-orange-50 text-orange-700 rounded-full border border-orange-200 shadow-sm">
+                        <div className="flex items-center gap-1.5 text-xs font-bold px-3 py-1 bg-slate-50 text-slate-600 rounded-full border border-slate-200 shadow-sm">
                           <Clock className="w-3.5 h-3.5" />
                           {file.days_inactive} days stuck
                         </div>

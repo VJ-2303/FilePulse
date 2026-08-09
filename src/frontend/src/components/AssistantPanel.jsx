@@ -94,7 +94,7 @@ export default function AssistantPanel() {
           title="FilePulse Assistant"
         >
           <MessageCircle className="w-6 h-6" />
-          <span className="absolute -top-1 -right-1 w-4 h-4 bg-emerald-400 rounded-full border-2 border-white animate-pulse" />
+          <span className="absolute -top-1 -right-1 w-4 h-4 bg-slate-400 rounded-full border-2 border-white animate-pulse" />
         </button>
       )}
 
@@ -105,8 +105,8 @@ export default function AssistantPanel() {
         }`}
       >
         {/* Header */}
-        <div className="flex items-center gap-3 p-4 border-b border-slate-100 bg-gradient-to-r from-sky-600 to-sky-700 shrink-0">
-          <div className="p-2 bg-white/20 rounded-xl">
+        <div className="flex items-center gap-3 p-4 border-b border-slate-100 bg-slate-800 shrink-0">
+          <div className="p-2 bg-white/10 rounded-xl">
             <Sparkles className="w-5 h-5 text-white" />
           </div>
           <div>
@@ -147,7 +147,7 @@ export default function AssistantPanel() {
               <div
                 className={`max-w-[88%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
                   msg.role === 'user'
-                    ? 'bg-sky-600 text-white rounded-br-sm'
+                    ? 'bg-slate-700 text-white rounded-br-sm'
                     : 'bg-slate-100 text-slate-800 rounded-bl-sm'
                 }`}
               >
@@ -229,7 +229,7 @@ export default function AssistantPanel() {
             <button
               onClick={() => send()}
               disabled={!input.trim() || loading}
-              className="p-3 bg-sky-600 text-white rounded-xl hover:bg-sky-700 disabled:opacity-40 disabled:cursor-not-allowed transition-all hover:scale-105 active:scale-95 shrink-0"
+              className="p-3 bg-slate-700 text-white rounded-xl hover:bg-slate-800 disabled:opacity-40 disabled:cursor-not-allowed transition-all hover:scale-105 active:scale-95 shrink-0"
             >
               <Send className="w-5 h-5" />
             </button>

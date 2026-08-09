@@ -15,8 +15,8 @@ export function Sidebar() {
     <aside className="w-72 bg-white/80 backdrop-blur-xl border-r border-slate-200/60 h-screen sticky top-0 flex flex-col shadow-[4px_0_24px_rgba(0,0,0,0.02)] z-50">
       <div className="p-6 border-b border-slate-100 flex items-center justify-between bg-gradient-to-b from-slate-50/50 to-transparent">
         <div className="flex items-center gap-3">
-          <div className="bg-gradient-to-br from-sky-400 to-sky-600 p-2.5 rounded-xl shadow-lg shadow-sky-500/25 border border-sky-400/20">
-            <Activity className="w-5 h-5 text-white animate-pulse" />
+          <div className="bg-slate-700 p-2.5 rounded-xl shadow-md border border-slate-600">
+            <Activity className="w-5 h-5 text-slate-100 animate-pulse" />
           </div>
           <div>
             <h1 className="text-xl font-black text-slate-800 tracking-tight">FilePulse</h1>
@@ -63,7 +63,7 @@ export function Sidebar() {
       {/* User Profile Section (MVP Target User) */}
       <div className="p-4 border-t border-slate-100 bg-slate-50/50">
         <div className="flex items-center gap-3 p-3 bg-white rounded-xl shadow-sm border border-slate-200 hover:border-sky-300 hover:shadow-md transition-all cursor-pointer group">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-sky-100 to-sky-200 flex items-center justify-center text-sky-700 font-bold border border-sky-300/50 group-hover:scale-105 transition-transform">
+          <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 font-bold border border-slate-300 group-hover:scale-105 transition-transform">
             RI
           </div>
           <div className="flex-1 min-w-0">

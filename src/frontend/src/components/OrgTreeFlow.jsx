@@ -21,30 +21,30 @@ import { User, FileText } from 'lucide-react';
 const OrgNode = ({ data, isConnectable }) => {
   return (
     <div className={cn(
-      "px-8 py-6 rounded-2xl border bg-white shadow-md transition-all min-w-[340px] hover:border-sky-400 hover:shadow-xl cursor-pointer group",
+      "px-10 py-8 rounded-3xl border bg-white shadow-md transition-all min-w-[480px] hover:border-sky-400 hover:shadow-xl cursor-pointer group",
       data.highlighted ? "border-sky-500 shadow-lg ring-4 ring-sky-100" : "border-slate-200",
       data.stuck ? "border-rose-500 shadow-lg ring-4 ring-rose-100" : ""
     )}>
       <Handle type="target" position={Position.Top} isConnectable={isConnectable} className="opacity-0" />
       <div className="flex items-start gap-5">
-        <div className={cn(
-          "p-4 rounded-2xl border shadow-sm shrink-0 transition-colors flex flex-col items-center justify-center",
-          data.highlighted ? "bg-sky-100 text-sky-600 border-sky-200" : "bg-slate-50 text-slate-500 border-slate-100 group-hover:bg-sky-50 group-hover:text-sky-600"
-        )}>
-          <User className="w-10 h-10" />
+        <div className="shrink-0 transition-colors flex flex-col items-center justify-center pt-1">
+          <User className={cn(
+            "w-16 h-16 transition-colors",
+            data.highlighted ? "text-sky-500" : "text-slate-400 group-hover:text-slate-600"
+          )} />
         </div>
         <div className="flex-1 min-w-0 pt-0.5">
-          <div className="text-xl font-black text-slate-900 truncate group-hover:text-sky-700 transition-colors leading-tight">{data.name}</div>
-          <div className="text-xs font-bold uppercase tracking-widest text-slate-400 mt-1.5 truncate">{data.role}</div>
+          <div className="text-3xl font-black text-slate-900 truncate group-hover:text-sky-700 transition-colors leading-tight">{data.name}</div>
+          <div className="text-base font-bold uppercase tracking-widest text-slate-400 mt-2 truncate">{data.role}</div>
 
-          <div className="mt-5 flex items-center gap-3">
-            <div className="text-sm font-bold text-slate-600 flex items-center gap-2 bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-100 w-fit shadow-sm">
-              <FileText className="w-5 h-5 text-sky-500" />
+          <div className="mt-6 flex items-center gap-4">
+            <div className="text-lg font-bold text-slate-600 flex items-center gap-2.5 bg-slate-50 px-4 py-2 rounded-xl border border-slate-100 w-fit shadow-sm">
+              <FileText className="w-6 h-6 text-slate-400" />
               {data.active_files || 0} Files
             </div>
             {data.alerted_files > 0 && (
-              <div className="text-sm font-bold text-rose-700 flex items-center gap-2 bg-rose-50 px-3 py-1.5 rounded-lg border border-rose-100 w-fit shadow-sm">
-                <div className="w-2 h-2 rounded-full bg-rose-500 animate-pulse shadow-sm"></div>
+              <div className="text-lg font-bold text-slate-600 flex items-center gap-2.5 bg-slate-50 px-4 py-2 rounded-xl border border-slate-100 w-fit shadow-sm">
+                <div className="w-3 h-3 rounded-full bg-slate-400 animate-pulse shadow-sm"></div>
                 {data.alerted_files} Alerts
               </div>
             )}
@@ -68,9 +68,9 @@ const TransferEdge = ({ id, sourceX, sourceY, targetX, targetY, style, markerEnd
             transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
             pointerEvents: 'all',
           }}
-          className="nodrag nopan bg-sky-500 rounded-xl p-2.5 shadow-xl shadow-sky-500/30 flex items-center justify-center animate-bounce border-[3px] border-white"
+          className="nodrag nopan bg-slate-100 rounded-xl p-2.5 shadow-md flex items-center justify-center animate-bounce border-[3px] border-white"
         >
-          <FileText className="w-6 h-6 text-white" />
+          <FileText className="w-6 h-6 text-slate-600" />
         </div>
       </EdgeLabelRenderer>
     </>

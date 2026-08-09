@@ -153,8 +153,8 @@ export default function DashboardPage() {
           ))}
           {alerts.length === 0 && (
             <div className="text-center p-16 bg-white/40 backdrop-blur-xl rounded-3xl border border-white/60 shadow-sm">
-              <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
-                <CheckCircle2 className="w-10 h-10 text-emerald-500" />
+              <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
+                <CheckCircle2 className="w-10 h-10 text-slate-500" />
               </div>
               <h3 className="text-2xl font-black text-slate-800 tracking-tight">All systems optimal</h3>
               <p className="text-slate-500 mt-2 font-medium">No workflow anomalies detected in the current sweep.</p>
@@ -178,10 +178,10 @@ export default function DashboardPage() {
         <div>
           <div className="flex items-center gap-3 mb-2">
             <h1 className="text-3xl font-black text-slate-900 tracking-tight">Diagnostic Command Center</h1>
-            <div className="flex items-center gap-2 bg-emerald-50 border border-emerald-200 text-emerald-700 px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm">
+            <div className="flex items-center gap-2 bg-slate-50 border border-slate-200 text-slate-700 px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-slate-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-slate-500"></span>
               </span>
               System Live
             </div>
@@ -202,7 +202,7 @@ export default function DashboardPage() {
       <div className="pt-4">
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
           <h2 className="text-xl font-bold text-slate-900 flex items-center gap-3">
-            <div className="p-2 bg-rose-100/80 text-rose-600 rounded-xl shadow-sm border border-rose-200">
+            <div className="p-2 bg-slate-50 text-slate-600 rounded-xl shadow-sm border border-slate-200">
               <AlertTriangle className="w-5 h-5" />
             </div>
             Critical Bottlenecks
@@ -246,7 +246,7 @@ export default function DashboardPage() {
           ))}
           {alerts.length === 0 && (
             <div className="col-span-3 text-center p-12 bg-white/40 backdrop-blur-xl rounded-3xl border border-white/60 shadow-sm">
-              <CheckCircle2 className="w-12 h-12 text-emerald-400 mx-auto mb-4 drop-shadow-sm" />
+              <CheckCircle2 className="w-12 h-12 text-slate-400 mx-auto mb-4 drop-shadow-sm" />
               <p className="text-xl font-bold text-slate-700">No active bottlenecks found.</p>
             </div>
           )}
@@ -266,7 +266,7 @@ function StatCard({ icon: Icon, label, value, color, bg }) {
     <div className="bg-white/60 backdrop-blur-xl border border-white/80 rounded-3xl p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_15px_35px_rgb(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden flex flex-col justify-between">
       <div className="absolute -right-6 -top-6 w-24 h-24 bg-gradient-to-br from-white/40 to-transparent rounded-full blur-xl group-hover:bg-white/80 transition-colors pointer-events-none" />
       <div className="flex items-start justify-between mb-6 relative z-10">
-        <div className={cn("p-3.5 rounded-2xl shadow-sm border border-white/50 transition-transform group-hover:scale-110", bg, color)}>
+        <div className="p-3.5 rounded-2xl shadow-sm border border-slate-200 bg-slate-50 text-slate-600 transition-transform group-hover:scale-110">
           <Icon className="w-6 h-6" />
         </div>
       </div>

@@ -1,4 +1,4 @@
-export function generateTreeLayout(apiTree, nodeWidth = 340, nodeHeight = 120, dx = 420, dy = 220) {
+export function generateTreeLayout(apiTree, nodeWidth = 480, nodeHeight = 160, dx = 560, dy = 320) {
   const nodes = [];
   const edges = [];
 
