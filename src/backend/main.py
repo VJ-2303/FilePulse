@@ -34,8 +34,13 @@ async def http_exception_handler(request: Request, exc: HTTPException):
 
 @app.on_event("startup")
 async def startup():
-    with get_connection() as conn:
-        await run_full_pipeline(conn, top_k_ai_insights=10)
+    try:
+        with get_connection() as conn:
+            # Run pipeline without blocking server startup on external AI calls
+            await run_full_pipeline(conn, top_k_ai_insights=0)
+    except Exception as e:
+        print(f"Warning: Startup pipeline encountered error: {e}")
+
 
 
 @app.get("/api/health")
