@@ -110,7 +110,7 @@ export default function FileJourneyPage() {
   }
 
   return (
-    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12 h-[calc(100vh-100px)] flex flex-col">
+    <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-8 min-h-[calc(100vh-100px)] flex flex-col">
       <style>{customStyles}</style>
       {/* Header Section */}
       <div className="flex items-center justify-between gap-4 bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-800 shrink-0">
@@ -129,7 +129,7 @@ export default function FileJourneyPage() {
       </div>
 
       {/* Cinematic View */}
-      <div className="bg-slate-900 rounded-3xl p-4 lg:p-12 flex-1 flex flex-col relative overflow-hidden shadow-2xl border border-slate-800">
+      <div className="bg-slate-900 rounded-3xl p-4 lg:p-8 flex-1 flex flex-col relative overflow-hidden shadow-2xl border border-slate-800">
 
         {/* Background Ambient Effects */}
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-sky-500/20 blur-[100px] rounded-full pointer-events-none" />
@@ -155,7 +155,7 @@ export default function FileJourneyPage() {
         <div className="flex-1 flex flex-col items-center justify-center relative z-10 w-full max-w-4xl mx-auto px-12 lg:px-24">
 
           {/* The Main Slide */}
-          <div className="w-full flex flex-col items-center gap-12">
+          <div className="w-full flex flex-col items-center gap-6 lg:gap-8 mt-4 lg:mt-0">
 
             <div className="text-center space-y-2">
               <Badge variant="info" className="bg-sky-500/10 text-sky-400 border border-sky-500/20 px-4 py-1.5 text-sm tracking-widest uppercase shadow-sm">
@@ -254,8 +254,8 @@ export default function FileJourneyPage() {
         </div>
 
         {/* Global Timeline Scrubber */}
-        <div className="mt-8 lg:mt-16 relative z-10 max-w-5xl mx-auto w-full shrink-0">
-          <div className="flex items-center justify-between gap-4 lg:gap-8 w-full bg-slate-800/30 p-4 lg:p-6 rounded-3xl border border-slate-700/30 backdrop-blur-md">
+        <div className="mt-6 lg:mt-8 relative z-10 max-w-5xl mx-auto w-full shrink-0">
+          <div className="flex items-center justify-between gap-4 lg:gap-8 w-full bg-slate-800/30 p-4 lg:px-6 lg:pt-5 lg:pb-10 rounded-3xl border border-slate-700/30 backdrop-blur-md">
             <button
               onClick={prevStep}
               disabled={stepIndex <= 0}
@@ -286,8 +286,8 @@ export default function FileJourneyPage() {
                       i < stepIndex ? "bg-sky-500 border-sky-400" : "bg-slate-800 border-slate-500 group-hover:border-slate-400 group-hover:bg-slate-700"
                   )} />
                   <div className={cn(
-                    "absolute top-8 whitespace-nowrap text-[10px] lg:text-xs font-bold uppercase tracking-widest transition-colors",
-                    i === stepIndex ? "text-sky-400" : "text-slate-600 group-hover:text-slate-300 opacity-0 lg:opacity-100"
+                    "absolute top-8 lg:top-7 whitespace-nowrap text-[10px] lg:text-[11px] font-bold uppercase tracking-widest transition-colors",
+                    i === stepIndex ? "text-sky-400" : "text-slate-500 group-hover:text-slate-300 opacity-0 lg:opacity-100"
                   )}>
                     {new Date(evt.timestamp).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
                   </div>

@@ -111,17 +111,17 @@ export default function EmployeeDetailPage() {
                   <div
                     key={file.file_id}
                     onClick={() => navigate(`/files/${file.file_id}`)}
-                    className="p-5 bg-white border border-slate-200 rounded-2xl shadow-sm hover:border-sky-300 hover:shadow-md transition-all cursor-pointer group flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+                    className="p-5 bg-white border border-slate-200 rounded-2xl shadow-sm hover:border-sky-300 hover:shadow-md transition-all cursor-pointer group flex flex-col sm:flex-row sm:items-start justify-between gap-5"
                   >
-                    <div>
-                      <h5 className="text-lg font-bold text-slate-800 group-hover:text-sky-700 transition-colors mb-1">{file.title}</h5>
-                      <div className="text-sm text-slate-500 font-medium flex items-center gap-2">
-                        <span className="bg-slate-100 px-2 py-0.5 rounded text-slate-600 text-xs font-bold">{file.file_id}</span>
-                        <span>{file.file_type}</span>
+                    <div className="flex-1 min-w-0">
+                      <h5 className="text-lg font-bold text-slate-800 group-hover:text-sky-700 transition-colors mb-1 leading-snug">{file.title}</h5>
+                      <div className="text-sm text-slate-500 font-medium flex items-center gap-2 mt-2">
+                        <span className="bg-slate-100 px-2 py-0.5 rounded text-slate-600 text-xs font-bold shrink-0">{file.file_id}</span>
+                        <span className="truncate">{file.file_type}</span>
                       </div>
                     </div>
 
-                    <div className="flex flex-wrap items-center gap-2 sm:justify-end shrink-0">
+                    <div className="flex flex-wrap items-start gap-2 sm:justify-end sm:max-w-[55%] shrink-0 mt-1 sm:mt-0">
                       <Badge variant={file.priority === 'High' ? 'danger' : 'default'} className="px-3 py-1 text-xs">
                         {file.priority}
                       </Badge>

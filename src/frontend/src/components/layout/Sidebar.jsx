@@ -8,7 +8,7 @@ export function Sidebar() {
   const links = [
     { path: "/", query: "?view=overview", label: "Overview Dashboard", icon: LayoutDashboard },
     { path: "/", query: "?view=alerts", label: "Alerts Center", icon: AlertTriangle },
-    { path: "/org", query: "", label: "Organization Tree", icon: Network },
+    { path: "/org", query: "", label: "Organisation Hierarchy", icon: Network },
   ];
 
   return (
@@ -70,7 +70,6 @@ export function Sidebar() {
             <p className="text-sm font-bold text-slate-800 truncate group-hover:text-sky-700 transition-colors">R. Iyer</p>
             <p className="text-[11px] font-medium text-slate-500 truncate uppercase tracking-wider">Section Officer</p>
           </div>
-          <Settings className="w-4 h-4 text-slate-400 group-hover:text-slate-600 transition-colors" />
         </div>
       </div>
     </aside>

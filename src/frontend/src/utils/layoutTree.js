@@ -1,7 +1,7 @@
-export function generateTreeLayout(apiTree, nodeWidth = 220, nodeHeight = 80, dx = 260, dy = 160) {
+export function generateTreeLayout(apiTree, nodeWidth = 340, nodeHeight = 120, dx = 420, dy = 220) {
   const nodes = [];
   const edges = [];
-  
+
   function measureWidth(node) {
     if (!node.children || node.children.length === 0) return dx;
     let w = 0;
@@ -27,7 +27,7 @@ export function generateTreeLayout(apiTree, nodeWidth = 220, nodeHeight = 80, dx
         const childW = measureWidth(child);
         const childX = currentX + childW / 2;
         traverse(child, childX, y + dy);
-        
+
         edges.push({
           id: `${node.employee_id}-${child.employee_id}`,
           source: node.employee_id,
@@ -46,7 +46,7 @@ export function generateTreeLayout(apiTree, nodeWidth = 220, nodeHeight = 80, dx
   for (const root of apiTree) {
     totalRootWidth += measureWidth(root);
   }
-  
+
   let currentRootX = -totalRootWidth / 2;
   for (const root of apiTree) {
     const rootW = measureWidth(root);

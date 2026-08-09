@@ -87,20 +87,16 @@ export default function AssistantPanel() {
   return (
     <>
       {/* Floating trigger button */}
-      <button
-        onClick={() => setIsOpen((o) => !o)}
-        className={`fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 ${
-          isOpen
-            ? 'bg-slate-700 text-white rotate-90'
-            : 'bg-sky-600 text-white hover:bg-sky-700 hover:scale-110'
-        }`}
-        title="FilePulse Assistant"
-      >
-        {isOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
-        {!isOpen && (
+      {!isOpen && (
+        <button
+          onClick={() => setIsOpen(true)}
+          className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 bg-sky-600 text-white hover:bg-sky-700 hover:scale-110"
+          title="FilePulse Assistant"
+        >
+          <MessageCircle className="w-6 h-6" />
           <span className="absolute -top-1 -right-1 w-4 h-4 bg-emerald-400 rounded-full border-2 border-white animate-pulse" />
-        )}
-      </button>
+        </button>
+      )}
 
       {/* Slide-in panel */}
       <div

@@ -12,6 +12,12 @@ export async function fetchAlerts(type = 'all') {
   return res.json();
 }
 
+export async function fetchDashboardCharts() {
+  const res = await fetch(`${BASE_URL}/dashboard/charts`);
+  if (!res.ok) throw new Error('Failed to fetch dashboard charts');
+  return res.json();
+}
+
 export async function fetchOrgTree() {
   const res = await fetch(`${BASE_URL}/org/tree`);
   if (!res.ok) throw new Error('Failed to fetch org tree');
