@@ -5,6 +5,12 @@ import { Badge } from '../components/ui';
 import { AlertCircle, CheckCircle2, TrendingUp, AlertTriangle, Filter, Search, Server, Activity, ArrowRight, FileText, BarChart3 } from 'lucide-react';
 import { cn } from '../utils/classNames';
 
+const AmbientBackground = ({ children }) => (
+  <div className="w-full pb-12 animate-in fade-in slide-in-from-bottom-4 duration-700 space-y-8">
+    {children}
+  </div>
+);
+
 export default function DashboardPage() {
   const [summary, setSummary] = useState(null);
   const [alerts, setAlerts] = useState([]);
@@ -66,12 +72,7 @@ export default function DashboardPage() {
     </div>
   );
 
-  // Background Ambience Wrapper
-  const AmbientBackground = ({ children }) => (
-    <div className="w-full pb-12 animate-in fade-in slide-in-from-bottom-4 duration-700 space-y-8">
-      {children}
-    </div>
-  );
+  // AmbientBackground moved outside component to prevent focus loss
 
   if (currentView === 'alerts') {
     return (
