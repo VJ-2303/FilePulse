@@ -12,6 +12,14 @@
 
 - [x] 2026-08-09 00:00 +05:30 Added dashboard weekly clearance histogram and looping identification scatter plot, backed by a new dashboard charts API - verified by frontend build and backend route wiring
 
+- [x] 2026-08-09 10:53 +05:30 Enhanced Organisation Hierarchy graph readability with compact layout spacing, larger default viewport, clearer nodes, stronger edges, and wider page canvas - verified by `npm run build`, `npm.cmd run lint`, and Vite `/org` serving locally
+
+- [x] 2026-08-09 10:58 +05:30 Reworked Organisation Hierarchy into a vertical sibling layout with larger profile nodes, left-to-right hierarchy edges, and higher-contrast emerald/indigo/amber graph styling - verified by `npm.cmd run build`, `npm.cmd run lint`, and local `/org` HTTP 200
+
+- [x] 2026-08-09 11:02 +05:30 Made Organisation Hierarchy graph reachable below the fold by expanding the graph area, switching from fit-to-view shrinkage to a readable default viewport, and enabling wheel/trackpad canvas panning - verified by `npm.cmd run build`, `npm.cmd run lint`, and local `/org` HTTP 200
+
+- [x] 2026-08-09 11:08 +05:30 Tuned Organisation Hierarchy initial viewport to avoid abnormal close-up zoom while keeping large nodes and scrollable/pannable access to lower hierarchy nodes - verified by `npm.cmd run build`, `npm.cmd run lint`, and local `/org` HTTP 200
+
 ---
 
 ## Codebase State

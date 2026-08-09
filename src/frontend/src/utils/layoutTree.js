@@ -1,32 +1,32 @@
-export function generateTreeLayout(apiTree, nodeWidth = 480, nodeHeight = 160, dx = 560, dy = 320) {
+export function generateTreeLayout(apiTree, nodeWidth = 430, nodeHeight = 176, dx = 540, dy = 210) {
   const nodes = [];
   const edges = [];
 
-  function measureWidth(node) {
-    if (!node.children || node.children.length === 0) return dx;
-    let w = 0;
+  function measureHeight(node) {
+    if (!node.children || node.children.length === 0) return dy;
+    let h = 0;
     for (const child of node.children) {
-      w += measureWidth(child);
+      h += measureHeight(child);
     }
-    return Math.max(w, dx);
+    return Math.max(h, dy);
   }
 
   function traverse(node, x, y) {
     nodes.push({
       id: node.employee_id,
       data: { ...node, label: node.name },
-      position: { x: x - nodeWidth / 2, y },
+      position: { x, y: y - nodeHeight / 2 },
       type: 'orgNode',
     });
 
     if (node.children && node.children.length > 0) {
-      const totalW = measureWidth(node);
-      let currentX = x - totalW / 2;
+      const totalH = measureHeight(node);
+      let currentY = y - totalH / 2;
 
       for (const child of node.children) {
-        const childW = measureWidth(child);
-        const childX = currentX + childW / 2;
-        traverse(child, childX, y + dy);
+        const childH = measureHeight(child);
+        const childY = currentY + childH / 2;
+        traverse(child, x + dx, childY);
 
         edges.push({
           id: `${node.employee_id}-${child.employee_id}`,
@@ -34,24 +34,24 @@ export function generateTreeLayout(apiTree, nodeWidth = 480, nodeHeight = 160, d
           target: child.employee_id,
           type: 'smoothstep',
           animated: false,
-          style: { stroke: '#cbd5e1', strokeWidth: 2 }
+          style: { stroke: '#64748b', strokeWidth: 3 }
         });
 
-        currentX += childW;
+        currentY += childH;
       }
     }
   }
 
-  let totalRootWidth = 0;
+  let totalRootHeight = 0;
   for (const root of apiTree) {
-    totalRootWidth += measureWidth(root);
+    totalRootHeight += measureHeight(root);
   }
 
-  let currentRootX = -totalRootWidth / 2;
+  let currentRootY = -totalRootHeight / 2;
   for (const root of apiTree) {
-    const rootW = measureWidth(root);
-    traverse(root, currentRootX + rootW / 2, 40);
-    currentRootX += rootW;
+    const rootH = measureHeight(root);
+    traverse(root, 40, currentRootY + rootH / 2);
+    currentRootY += rootH;
   }
 
   return { nodes, edges };

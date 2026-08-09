@@ -11,47 +11,61 @@ import ReactFlow, {
   useReactFlow,
   BaseEdge,
   EdgeLabelRenderer,
-  getStraightPath
+  getStraightPath,
+  PanOnScrollMode
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 import { generateTreeLayout } from '../utils/layoutTree';
 import { cn } from '../utils/classNames';
-import { User, FileText } from 'lucide-react';
+import { AlertTriangle, FileText, User } from 'lucide-react';
 
 const OrgNode = ({ data, isConnectable }) => {
+  const hasAlerts = data.alerted_files > 0;
+  const fileCount = data.active_files || 0;
+
   return (
     <div className={cn(
-      "px-10 py-8 rounded-3xl border bg-white shadow-md transition-all min-w-[480px] hover:border-sky-400 hover:shadow-xl cursor-pointer group",
-      data.highlighted ? "border-sky-500 shadow-lg ring-4 ring-sky-100" : "border-slate-200",
-      data.stuck ? "border-rose-500 shadow-lg ring-4 ring-rose-100" : ""
+      "w-[430px] min-h-[176px] overflow-hidden rounded-lg border bg-white shadow-[0_18px_42px_rgba(15,23,42,0.11)] transition-all hover:-translate-y-1 hover:shadow-[0_26px_54px_rgba(14,165,233,0.2)] cursor-pointer group",
+      data.highlighted ? "border-sky-500 ring-4 ring-sky-100" : hasAlerts ? "border-amber-300" : "border-slate-200",
+      data.stuck ? "border-rose-500 ring-4 ring-rose-100" : ""
     )}>
-      <Handle type="target" position={Position.Top} isConnectable={isConnectable} className="opacity-0" />
-      <div className="flex items-start gap-5">
-        <div className="shrink-0 transition-colors flex flex-col items-center justify-center pt-1">
+      <Handle type="target" position={Position.Left} isConnectable={isConnectable} className="opacity-0" />
+      <div className={cn(
+        "h-2 w-full",
+        data.highlighted ? "bg-sky-500" : hasAlerts ? "bg-amber-400" : "bg-emerald-400"
+      )} />
+      <div className="flex items-start gap-5 px-6 py-5">
+        <div className={cn(
+          "shrink-0 flex h-16 w-16 items-center justify-center rounded-lg border transition-colors",
+          data.highlighted ? "border-sky-200 bg-sky-50" : hasAlerts ? "border-amber-200 bg-amber-50" : "border-emerald-200 bg-emerald-50"
+        )}>
           <User className={cn(
-            "w-16 h-16 transition-colors",
-            data.highlighted ? "text-sky-500" : "text-slate-400 group-hover:text-slate-600"
+            "h-9 w-9 transition-colors",
+            data.highlighted ? "text-sky-600" : hasAlerts ? "text-amber-600" : "text-emerald-700"
           )} />
         </div>
-        <div className="flex-1 min-w-0 pt-0.5">
-          <div className="text-3xl font-black text-slate-900 truncate group-hover:text-sky-700 transition-colors leading-tight">{data.name}</div>
-          <div className="text-base font-bold uppercase tracking-widest text-slate-400 mt-2 truncate">{data.role}</div>
+        <div className="min-w-0 flex-1">
+          <div className="truncate text-[26px] font-black leading-tight text-slate-950 transition-colors group-hover:text-sky-700">{data.name}</div>
+          <div className="mt-2 truncate text-xs font-bold uppercase tracking-wide text-slate-500">{data.role}</div>
+          <div className="mt-2 inline-flex max-w-full items-center rounded-md bg-indigo-50 px-3 py-1 text-sm font-bold text-indigo-700">
+            <span className="truncate">{data.department}</span>
+          </div>
 
-          <div className="mt-6 flex items-center gap-4">
-            <div className="text-lg font-bold text-slate-600 flex items-center gap-2.5 bg-slate-50 px-4 py-2 rounded-xl border border-slate-100 w-fit shadow-sm">
-              <FileText className="w-6 h-6 text-slate-400" />
-              {data.active_files || 0} Files
+          <div className="mt-5 flex flex-wrap items-center gap-3">
+            <div className="flex w-fit items-center gap-2 rounded-md border border-slate-200 bg-slate-50 px-4 py-2 text-base font-black text-slate-700">
+              <FileText className="h-5 w-5 text-slate-500" />
+              {fileCount} Files
             </div>
-            {data.alerted_files > 0 && (
-              <div className="text-lg font-bold text-slate-600 flex items-center gap-2.5 bg-slate-50 px-4 py-2 rounded-xl border border-slate-100 w-fit shadow-sm">
-                <div className="w-3 h-3 rounded-full bg-slate-400 animate-pulse shadow-sm"></div>
+            {hasAlerts && (
+              <div className="flex w-fit items-center gap-2 rounded-md border border-amber-200 bg-amber-50 px-4 py-2 text-base font-black text-amber-700">
+                <AlertTriangle className="h-5 w-5" />
                 {data.alerted_files} Alerts
               </div>
             )}
           </div>
         </div>
       </div>
-      <Handle type="source" position={Position.Bottom} isConnectable={isConnectable} className="opacity-0" />
+      <Handle type="source" position={Position.Right} isConnectable={isConnectable} className="opacity-0" />
     </div>
   );
 };
@@ -68,9 +82,9 @@ const TransferEdge = ({ id, sourceX, sourceY, targetX, targetY, style, markerEnd
             transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
             pointerEvents: 'all',
           }}
-          className="nodrag nopan bg-slate-100 rounded-xl p-2.5 shadow-md flex items-center justify-center animate-bounce border-[3px] border-white"
+          className="nodrag nopan flex items-center justify-center rounded-lg border-2 border-white bg-cyan-100 p-2.5 shadow-lg"
         >
-          <FileText className="w-6 h-6 text-slate-600" />
+          <FileText className="h-5 w-5 text-cyan-700" />
         </div>
       </EdgeLabelRenderer>
     </>
@@ -85,6 +99,8 @@ const edgeTypes = {
   transferEdge: TransferEdge,
 };
 
+const DEFAULT_VIEWPORT = { x: 60, y: 330, zoom: 0.62 };
+
 function FlowContent({ orgTree, currentEvent, onNodeClick }) {
   const { nodes: initialNodes, edges: initialEdges } = useMemo(() => {
     if (!orgTree || orgTree.length === 0) return { nodes: [], edges: [] };
@@ -93,7 +109,7 @@ function FlowContent({ orgTree, currentEvent, onNodeClick }) {
 
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-  const { fitView } = useReactFlow();
+  const { setViewport } = useReactFlow();
 
   useEffect(() => {
     if (!orgTree || orgTree.length === 0) {
@@ -134,7 +150,7 @@ function FlowContent({ orgTree, currentEvent, onNodeClick }) {
         (e.source === currentEvent.to_user_id && e.target === currentEvent.from_user_id)
       );
 
-      const highlightStyle = { stroke: '#0ea5e9', strokeWidth: 3 };
+      const highlightStyle = { stroke: '#0891b2', strokeWidth: 5 };
 
       if (existingIdx >= 0) {
         newEdges[existingIdx] = {
@@ -144,7 +160,7 @@ function FlowContent({ orgTree, currentEvent, onNodeClick }) {
           style: highlightStyle,
           markerEnd: {
             type: MarkerType.ArrowClosed,
-            color: '#0ea5e9',
+            color: '#0891b2',
           },
         };
       } else {
@@ -158,7 +174,7 @@ function FlowContent({ orgTree, currentEvent, onNodeClick }) {
           type: 'transferEdge',
           markerEnd: {
             type: MarkerType.ArrowClosed,
-            color: '#0ea5e9',
+            color: '#0891b2',
           },
         });
       }
@@ -166,8 +182,8 @@ function FlowContent({ orgTree, currentEvent, onNodeClick }) {
 
     setNodes(newNodes);
     setEdges(newEdges);
-    setTimeout(() => fitView({ duration: 800, padding: 0.2 }), 50);
-  }, [orgTree, currentEvent, initialNodes, initialEdges, setNodes, setEdges, fitView]);
+    setTimeout(() => setViewport(DEFAULT_VIEWPORT, { duration: 800 }), 50);
+  }, [orgTree, currentEvent, initialNodes, initialEdges, setNodes, setEdges, setViewport]);
 
   return (
     <ReactFlow
@@ -178,19 +194,27 @@ function FlowContent({ orgTree, currentEvent, onNodeClick }) {
       onNodeClick={onNodeClick}
       nodeTypes={nodeTypes}
       edgeTypes={edgeTypes}
-      fitView
+      defaultViewport={DEFAULT_VIEWPORT}
       attributionPosition="bottom-left"
-      minZoom={0.1}
+      minZoom={0.35}
+      maxZoom={1.5}
+      nodesDraggable={false}
+      panOnScroll
+      panOnScrollMode={PanOnScrollMode.Free}
+      zoomOnScroll={false}
+      zoomOnPinch
+      panOnDrag
+      proOptions={{ hideAttribution: true }}
     >
-      <Background color="#cbd5e1" gap={24} />
-      <Controls />
+      <Background color="#bae6fd" gap={32} size={1.4} />
+      <Controls className="rounded-lg border border-slate-200 bg-white shadow-sm" />
     </ReactFlow>
   );
 }
 
 export function OrgTreeFlow({ orgTree, currentEvent = null, onNodeClick = null }) {
   return (
-    <div className="w-full h-full min-h-[500px] bg-slate-50/50 rounded-xl border border-slate-200">
+    <div className="h-full min-h-[720px] w-full overflow-hidden rounded-lg border border-slate-200 bg-[radial-gradient(circle_at_top_left,#dff7ef_0,#eff6ff_34%,#ffffff_74%)] shadow-inner">
       <ReactFlowProvider>
         <FlowContent orgTree={orgTree} currentEvent={currentEvent} onNodeClick={onNodeClick} />
       </ReactFlowProvider>
