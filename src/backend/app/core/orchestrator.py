@@ -1,3 +1,4 @@
+import asyncio
 import sqlite3
 from dataclasses import dataclass
 from datetime import datetime
@@ -11,7 +12,8 @@ from app.core.risk_scorer import score_alerts_from_db
 from app.core.stuck_detector import detect_rotting_from_db
 from app.db import DATA_DIR, ingest_csv_data, init_db, insert_ai_insights, insert_alerts
 from app.models import AiInsight, Alert, ConsolidatedAlert, Employee, Event, FileRecord
-from config import REFERENCE_NOW
+from config import AI_CALL_DELAY_SECONDS, REFERENCE_NOW
+
 
 
 @dataclass(frozen=True)
@@ -96,11 +98,16 @@ async def _generate_top_insights(
 
     cache = cached_insights or {}
     insights: list[AiInsight] = []
+    generated_count = 0
+
     for alert in primary_alerts[:top_k]:
         # Serve from cache if a prior ollama insight exists for this alert_id.
         if alert.alert_id in cache:
             insights.append(cache[alert.alert_id])
             continue
+
+        if generated_count > 0 and AI_CALL_DELAY_SECONDS > 0:
+            await asyncio.sleep(AI_CALL_DELAY_SECONDS)
 
         alert_types = {item.alert_type for item in alerts_by_file[alert.file_id]}
         insights.append(
@@ -111,7 +118,9 @@ async def _generate_top_insights(
                 compound={"ROTTING", "LOOPING"}.issubset(alert_types),
             )
         )
+        generated_count += 1
     return insights
+
 
 
 def _load_ollama_insights(conn: sqlite3.Connection) -> dict[str, AiInsight]:
