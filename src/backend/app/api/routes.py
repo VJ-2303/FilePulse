@@ -8,7 +8,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel
 
 from app.AI.ollama_service import generate_insight
-from app.ai.assistant import build_context, classify_intent
+from app.ai.assistant import build_context, classify_intent_scored
 from app.ai.assistant_prompts import SYSTEM_PROMPT, build_prompt
 from app.core.alert_consolidator import consolidate_alerts
 from app.db import get_connection, insert_ai_insights
@@ -73,6 +73,8 @@ async def regenerate_ai_insight(
 
 class AssistantRequest(BaseModel):
     message: str
+    active_file_id: str | None = None
+    active_employee_id: str | None = None
 
 
 @router.post("/api/assistant/chat")
@@ -85,9 +87,14 @@ async def assistant_chat(
     if not message:
         raise HTTPException(status_code=400, detail="Message cannot be empty")
 
-    intent, entities = classify_intent(message)
+    active_context = {
+        "active_file_id": body.active_file_id,
+        "active_employee_id": body.active_employee_id,
+    }
+    
+    intent, entities = classify_intent_scored(conn, message, active_context)
     context = build_context(conn, intent, entities)
-    prompt = build_prompt(context, message)
+    prompt = build_prompt(context, message, intent)
 
     try:
         async with httpx.AsyncClient(timeout=30) as client:

@@ -2,7 +2,17 @@
 
 **FilePulse** is an AI-powered Early Warning Radar for e-Office File Bottlenecks. Built for the Tech for Good 2026 Hackathon (Strong Institutions track).
 
+## 🌐 Live Deployments
+
+| Component | Platform | URL |
+|---|---|---|
+| **Frontend App** | Vercel | [https://filepulse-blue.vercel.app](https://filepulse-blue.vercel.app) |
+| **Backend API** | Railway | [https://institutions-team-067-future-pms-production-14dd.up.railway.app](https://institutions-team-067-future-pms-production-14dd.up.railway.app) |
+
+---
+
 It transforms passive e-Office logs into an active diagnostic tool by deterministically detecting stuck ("rotting") and bouncing ("looping") files, explaining them using a local AI model, and surfacing them in a React dashboard.
+
 
 ## Quick Start
 

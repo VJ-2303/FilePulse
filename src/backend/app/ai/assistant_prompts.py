@@ -16,14 +16,29 @@ Rules:
 """
 
 
-def build_prompt(context: dict, user_message: str) -> str:
+def build_prompt(context: dict, user_message: str, intent: str = "DASHBOARD_SUMMARY") -> str:
     """Inject context data and user question into the prompt."""
+    
+    intent_rules = {
+        "FILE_DETAIL": "Structure answer as: 1. Current State, 2. Bottleneck Cause, 3. Recommended Action.",
+        "ALERT_SUMMARY": "Format as a ranked list from highest to lowest risk score.",
+        "DEPARTMENT_LOOPS": "Highlight the two departments involved and the round-trip count.",
+        "EMPLOYEE_DETAIL": "Summarize the workload and mention any active alerts they hold.",
+    }
+    
+    intent_instruction = intent_rules.get(intent, "Provide a concise summary based on the data.")
+
     return f"""Here is the relevant data from the FilePulse database:
 
 {json.dumps(context, indent=2, default=str)}
 
 ---
 
+Additional Formatting Instruction: {intent_instruction}
+
+---
+
 User question: {user_message}
 
 Answer based strictly on the data above:"""
+

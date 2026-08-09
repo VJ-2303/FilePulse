@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { fetchAssistantResponse } from '../api/client';
@@ -36,6 +37,8 @@ export default function AssistantPanel() {
   const bottomRef = useRef(null);
   const inputRef = useRef(null);
 
+  const location = useLocation();
+
   useEffect(() => {
     if (isOpen) {
       bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -51,8 +54,17 @@ export default function AssistantPanel() {
     setMessages((prev) => [...prev, { role: 'user', text: message }]);
     setLoading(true);
 
+    let active_file_id = null;
+    let active_employee_id = null;
+
+    if (location.pathname.startsWith('/files/')) {
+      active_file_id = location.pathname.split('/')[2];
+    } else if (location.pathname.startsWith('/employees/')) {
+      active_employee_id = location.pathname.split('/')[2];
+    }
+
     try {
-      const data = await fetchAssistantResponse(message);
+      const data = await fetchAssistantResponse(message, active_file_id, active_employee_id);
       setMessages((prev) => [
         ...prev,
         {

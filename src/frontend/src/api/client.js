@@ -37,11 +37,15 @@ export async function fetchEmployeeWorkload(employeeId) {
   return res.json();
 }
 
-export async function fetchAssistantResponse(message) {
+export async function fetchAssistantResponse(message, active_file_id = null, active_employee_id = null) {
+  const body = { message };
+  if (active_file_id) body.active_file_id = active_file_id;
+  if (active_employee_id) body.active_employee_id = active_employee_id;
+
   const res = await fetch(`${BASE_URL}/assistant/chat`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ message }),
+    body: JSON.stringify(body),
   });
   if (!res.ok) throw new Error("Failed to get assistant response");
   return res.json();
