@@ -42,11 +42,12 @@ def alerts(
 
 
 @router.get("/api/files/{file_id}/journey")
-def file_journey(
+async def file_journey(
     file_id: str,
     conn: sqlite3.Connection = Depends(get_conn),
 ) -> dict:
-    return build_file_journey(conn, file_id)
+    return await build_file_journey(conn, file_id)
+
 
 
 @router.get("/api/employees/{employee_id}/workload")
@@ -171,7 +172,7 @@ def build_alerts_response(conn: sqlite3.Connection, type_filter: str = "all") ->
     ]
 
 
-def build_file_journey(conn: sqlite3.Connection, file_id: str) -> dict:
+async def build_file_journey(conn: sqlite3.Connection, file_id: str) -> dict:
     file_row = conn.execute("SELECT * FROM files WHERE file_id = ?", (file_id,)).fetchone()
     if file_row is None:
         raise HTTPException(status_code=404, detail=f"File {file_id} not found")
@@ -195,8 +196,9 @@ def build_file_journey(conn: sqlite3.Connection, file_id: str) -> dict:
         "alerts": alerts,
         "events": enriched_events,
         "graph": _build_graph(file_record, event_rows, alert_rows, employees_by_id),
-        "ai_insight": _primary_ai_insight(conn, file_id),
+        "ai_insight": await _primary_ai_insight(conn, file_id),
     }
+
 
 
 def build_employee_workload(conn: sqlite3.Connection, employee_id: str) -> dict:
@@ -514,7 +516,7 @@ def _user_loop_pairs(alert_rows: list[sqlite3.Row]) -> set[frozenset[str]]:
     return pairs
 
 
-def _primary_ai_insight(conn: sqlite3.Connection, file_id: str) -> dict | None:
+async def _primary_ai_insight(conn: sqlite3.Connection, file_id: str) -> dict | None:
     row = conn.execute(
         """
         SELECT i.* FROM ai_insights i
@@ -525,7 +527,39 @@ def _primary_ai_insight(conn: sqlite3.Connection, file_id: str) -> dict | None:
         """,
         (file_id,),
     ).fetchone()
-    return dict(row) if row else None
+    if row:
+        return dict(row)
+
+    # If no cached insight in SQLite, generate on-demand if there is an alert
+    alert_row = conn.execute(
+        "SELECT * FROM alerts WHERE file_id = ? ORDER BY risk_score DESC LIMIT 1",
+        (file_id,),
+    ).fetchone()
+    if not alert_row:
+        return None
+
+    file_row = conn.execute("SELECT * FROM files WHERE file_id = ?", (file_id,)).fetchone()
+    if not file_row:
+        return None
+
+    try:
+        file_record = FileRecord.model_validate(dict(file_row))
+        alert = Alert.model_validate(_alert_dict(alert_row))
+        event_rows = conn.execute(
+            "SELECT * FROM events WHERE file_id = ? ORDER BY timestamp, event_id",
+            (file_id,),
+        ).fetchall()
+        events = [Event.model_validate(_event_without_is_transfer(dict(e))) for e in event_rows]
+
+        all_alerts = conn.execute("SELECT alert_type FROM alerts WHERE file_id = ?", (file_id,)).fetchall()
+        alert_types = {r["alert_type"] for r in all_alerts}
+        compound = {"ROTTING", "LOOPING"}.issubset(alert_types)
+
+        insight = await generate_insight(alert, file_record, events, compound=compound)
+        insert_ai_insights(conn, [insight])
+        return insight.model_dump(mode="json")
+    except Exception:
+        return None
 
 
 def _alert_dict(row: sqlite3.Row) -> dict:

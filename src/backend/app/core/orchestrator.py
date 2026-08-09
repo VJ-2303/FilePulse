@@ -124,15 +124,16 @@ async def _generate_top_insights(
 
 
 def _load_ollama_insights(conn: sqlite3.Connection) -> dict[str, AiInsight]:
-    """Return a mapping of alert_id → AiInsight for all ollama-sourced insights in DB."""
+    """Return a mapping of alert_id → AiInsight for all cached insights in DB."""
     try:
         rows = conn.execute(
-            "SELECT * FROM ai_insights WHERE source = 'ollama'"
+            "SELECT * FROM ai_insights"
         ).fetchall()
         return {row["alert_id"]: AiInsight.model_validate(dict(row)) for row in rows}
     except Exception:
         # Table may not exist yet on first boot.
         return {}
+
 
 
 def _event_data(row: dict) -> dict:
