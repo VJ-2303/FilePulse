@@ -2,7 +2,7 @@
 
 **FilePulse** is an AI-powered Early Warning Radar for e-Office File Bottlenecks. Built for the Tech for Good 2026 Hackathon (Strong Institutions track).
 
-## 🌐 Live Deployments
+## Live Deployments
 
 | Component | Platform | URL |
 |---|---|---|
